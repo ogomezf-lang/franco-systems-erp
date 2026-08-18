@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Cotizaciones | Franco Systems
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+
+<body class="pagina-app">
+
+<div class="erp-layout">
+
+
+    <aside class="erp-sidebar">
+
+        <div class="sidebar-marca">
+
+            <img
+                src="img/logo.png"
+                alt="Franco Systems"
+                class="sidebar-logo"
+            >
+
+            <div class="sidebar-marca-texto">
+
+                <strong>
+                    FRANCO SYSTEMS
+                </strong>
+
+                <span>
+                    Business ERP
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <div class="sidebar-grupo">
+
+                <span class="sidebar-titulo">
+                    PRINCIPAL
+                </span>
+
+                <a
+                    href="dashboard.html"
+                    class="sidebar-item"
+                >
+                    <span class="sidebar-icono">
+                        ⌂
+                    </span>
+
+                    <span>
+                        Inicio
+                    </span>
+                </a>
+
+            </div>
+
+
+            <div class="sidebar-grupo">
+
+                <span class="sidebar-titulo">
+                    VENTAS
+                </span>
+
+                <a
+                    href="nueva-cotizacion.html"
+                    class="sidebar-item"
+                >
+                    <span class="sidebar-icono">
+                        ＋
+                    </span>
+
+                    <span>
+                        Nueva Cotización
+                    </span>
+                </a>
+
+
+                <a
+                    href="cotizaciones.html"
+                    class="sidebar-item activo"
+                >
+                    <span class="sidebar-icono">
+                        ▤
+                    </span>
+
+                    <span>
+                        Cotizaciones
+                    </span>
+                </a>
+
+            </div>
+
+
+            <div class="sidebar-grupo">
+
+                <span class="sidebar-titulo">
+                    GESTIÓN
+                </span>
+
+                <a
+                    href="clientes.html"
+                    class="sidebar-item"
+                >
+                    <span class="sidebar-icono">
+                        ♙
+                    </span>
+
+                    <span>
+                        Clientes
+                    </span>
+                </a>
+
+
+                <a
+                    href="productos.html"
+                    class="sidebar-item"
+                >
+                    <span class="sidebar-icono">
+                        □
+                    </span>
+
+                    <span>
+                        Productos
+                    </span>
+                </a>
+
+            </div>
+
+
+            <div class="sidebar-grupo">
+
+                <span class="sidebar-titulo">
+                    SISTEMA
+                </span>
+
+                <a
+                    href="configuracion.html"
+                    class="sidebar-item"
+                >
+                    <span class="sidebar-icono">
+                        ⚙
+                    </span>
+
+                    <span>
+                        Configuración
+                    </span>
+                </a>
+
+            </div>
+
+        </nav>
+
+
+        <div class="sidebar-pie">
+
+            <strong>
+                Franco Systems
+            </strong>
+
+            <span>
+                Business ERP v1.0
+            </span>
+
+        </div>
+
+    </aside>
+
+
+
+    <div class="erp-principal">
+
+
+        <header class="erp-topbar">
+
+            <div class="topbar-pagina">
+
+                <h2>
+                    Cotizaciones
+                </h2>
+
+                <span>
+                    Historial y gestión de documentos
+                </span>
+
+            </div>
+
+
+            <div class="topbar-derecha">
+
+                <div class="topbar-empresa">
+
+                    <span>
+                        EMPRESA
+                    </span>
+
+                    <strong id="empresaActual">
+                        Mi Empresa
+                    </strong>
+
+                </div>
+
+
+                <div class="topbar-separador"></div>
+
+
+                <div
+                    class="usuario-avatar"
+                    id="usuarioAvatar"
+                >
+                    A
+                </div>
+
+
+                <div class="usuario-info">
+
+                    <strong id="usuarioActual">
+                        ADMIN
+                    </strong>
+
+                    <span>
+                        Administrador
+                    </span>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="btnCerrarSesion"
+                    class="btn-salir"
+                >
+                    Salir
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <main class="erp-contenido">
+
+
+            <section class="dashboard-encabezado">
+
+                <span class="dashboard-etiqueta">
+                    VENTAS
+                </span>
+
+                <h1>
+                    Historial de Cotizaciones
+                </h1>
+
+                <p>
+                    Busca, revisa, edita, anula o reactiva tus documentos.
+                </p>
+
+            </section>
+
+
+
+            <section class="historial-panel">
+
+
+                <div class="historial-herramientas">
+
+
+                    <div class="historial-busqueda">
+
+                        <input
+                            type="search"
+                            id="buscarCotizacion"
+                            placeholder="Buscar por N°, cliente o documento..."
+                        >
+
+                    </div>
+
+
+                    <div class="historial-filtros">
+
+                        <button
+                            type="button"
+                            class="filtro-cotizacion activo"
+                            data-filtro="TODAS"
+                        >
+                            Todas
+                        </button>
+
+                        <button
+                            type="button"
+                            class="filtro-cotizacion"
+                            data-filtro="ACTIVA"
+                        >
+                            Activas
+                        </button>
+
+                        <button
+                            type="button"
+                            class="filtro-cotizacion"
+                            data-filtro="ANULADA"
+                        >
+                            Anuladas
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="tabla-contenedor">
+
+                    <table class="tabla-historial">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>N°</th>
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tablaCotizaciones">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+
+    </div>
+
+
+</div>
+
+
+<script src="js/auth.js"></script>
+<script src="js/cotizaciones.js"></script>
+
+</body>
+
+</html>

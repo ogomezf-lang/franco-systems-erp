@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Ver Cotización | Franco Systems
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+
+<body class="pagina-documento">
+
+
+    <!-- =========================================
+         BOTONES SUPERIORES
+    ========================================== -->
+
+    <div class="documento-toolbar">
+
+        <button
+            type="button"
+            id="btnVolver"
+            class="btn-documento-volver"
+        >
+            ← Volver
+        </button>
+
+
+        <button
+            type="button"
+            id="btnImprimir"
+            class="btn-documento-imprimir"
+        >
+            Imprimir / PDF
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================================
+         DOCUMENTO
+    ========================================== -->
+
+    <main
+        class="documento-cotizacion"
+        id="documentoCotizacion"
+    >
+
+
+        <!-- SELLO ANULADA -->
+
+        <div
+            id="selloAnulada"
+            class="sello-anulada"
+        >
+            COTIZACIÓN ANULADA
+        </div>
+
+
+
+        <!-- =====================================
+             CABECERA
+        ====================================== -->
+
+        <section class="doc-cabecera">
+
+
+            <!-- EMPRESA -->
+
+            <div class="doc-empresa">
+
+
+                <div class="doc-logo-area">
+
+                    <img
+                        id="logoEmpresaDoc"
+                        class="doc-logo"
+                        alt="Logo empresa"
+                    >
+
+                </div>
+
+
+                <div class="doc-empresa-datos">
+
+                    <h1 id="razonSocialDoc">
+                        EMPRESA
+                    </h1>
+
+                    <p id="direccionEmpresaDoc"></p>
+
+                    <p id="ubicacionEmpresaDoc"></p>
+
+                    <p>
+                        Teléfono:
+                        <span id="telefonoEmpresaDoc"></span>
+                    </p>
+
+                    <p>
+                        Correo:
+                        <span id="correoEmpresaDoc"></span>
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- CUADRO RUC -->
+
+            <div class="doc-cuadro-ruc">
+
+                <div class="doc-ruc-titulo">
+                    RUC
+                </div>
+
+                <strong id="rucEmpresaDoc">
+                    -
+                </strong>
+
+                <div class="doc-tipo-documento">
+                    COTIZACIÓN
+                </div>
+
+                <strong id="numeroCotizacionDoc">
+                    -
+                </strong>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             DATOS CLIENTE / DOCUMENTO
+        ====================================== -->
+
+        <section class="doc-datos">
+
+
+            <div class="doc-datos-columna">
+
+                <p>
+                    <strong>
+                        RUC / DNI:
+                    </strong>
+
+                    <span id="documentoClienteDoc"></span>
+                </p>
+
+
+                <p>
+                    <strong>
+                        CLIENTE:
+                    </strong>
+
+                    <span id="clienteDoc"></span>
+                </p>
+
+
+                <p>
+                    <strong>
+                        DIRECCIÓN:
+                    </strong>
+
+                    <span id="direccionClienteDoc"></span>
+                </p>
+
+            </div>
+
+
+
+            <div class="doc-datos-columna">
+
+                <p>
+                    <strong>
+                        FECHA DE EMISIÓN:
+                    </strong>
+
+                    <span id="fechaEmisionDoc"></span>
+                </p>
+
+
+                <p>
+                    <strong>
+                        MONEDA:
+                    </strong>
+
+                    <span id="monedaDoc"></span>
+                </p>
+
+
+                <p>
+                    <strong>
+                        DESCUENTO:
+                    </strong>
+
+                    <span id="descuentoDoc"></span>
+                </p>
+
+
+                <p>
+                    <strong>
+                        COMPROBANTE A EMITIR:
+                    </strong>
+
+                    <span id="comprobanteDoc"></span>
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             DETALLE
+        ====================================== -->
+
+        <section class="doc-detalle">
+
+            <table class="doc-tabla">
+
+                <thead>
+
+                    <tr>
+
+                        <th>N°</th>
+                        <th>UNIDAD</th>
+                        <th>CÓDIGO</th>
+                        <th>DESCRIPCIÓN</th>
+                        <th>CANT.</th>
+                        <th id="docTituloPrecio">
+                            V. UNIT.
+                        </th>
+                        <th>TOTAL</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="detalleDocumento">
+                </tbody>
+
+
+                <tfoot>
+
+                    <tr>
+
+                        <td
+                            colspan="7"
+                            id="importeLetrasDoc"
+                            class="doc-importe-letras"
+                        >
+                        </td>
+
+                    </tr>
+
+                </tfoot>
+
+            </table>
+
+        </section>
+
+
+
+        <!-- =====================================
+             TOTALES
+        ====================================== -->
+
+        <section class="doc-totales-area">
+
+
+            <div></div>
+
+
+            <div class="doc-totales">
+
+
+                <div class="doc-total-fila">
+
+                    <span>
+                        SUBTOTAL
+                    </span>
+
+                    <strong id="subtotalDoc">
+                        S/ 0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="doc-total-fila">
+
+                    <span id="textoDescuentoDoc">
+                        DESCUENTO 0%
+                    </span>
+
+                    <strong id="montoDescuentoDoc">
+                        S/ 0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="doc-total-fila">
+
+                    <span>
+                        BASE IMPONIBLE
+                    </span>
+
+                    <strong id="baseImponibleDoc">
+                        S/ 0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="doc-total-fila">
+
+                    <span id="textoImpuestoDoc">
+                        IGV 18%
+                    </span>
+
+                    <strong id="impuestoDoc">
+                        S/ 0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="doc-total-fila doc-total-final">
+
+                    <span>
+                        IMPORTE TOTAL
+                    </span>
+
+                    <strong id="totalDoc">
+                        S/ 0.00
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             CONDICIONES
+        ====================================== -->
+
+        <section class="doc-condiciones">
+
+
+            <p class="doc-condiciones-titulo">
+                CONDICIONES DE COTIZACIÓN:
+            </p>
+
+
+            <p
+                id="condicionesDoc"
+                class="doc-condiciones-texto"
+            >
+                -
+            </p>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             MENSAJE
+        ====================================== -->
+
+        <section class="doc-mensaje">
+
+            <p id="mensajeEmpresaDoc">
+            </p>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PIE
+        ====================================== -->
+
+        <footer class="doc-footer">
+
+
+            <div>
+
+                <span id="responsableDoc"></span>
+
+                <span id="cargoDoc"></span>
+
+            </div>
+
+
+            <div class="doc-franco">
+
+                Franco Systems · Business ERP v1.0
+
+            </div>
+
+
+        </footer>
+
+
+    </main>
+
+
+    <script src="js/auth.js"></script>
+
+    <script src="js/ver-cotizacion.js"></script>
+
+
+</body>
+
+</html>

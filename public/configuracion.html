@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Configuración | Franco Systems
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+
+<body class="pagina-app">
+
+
+    <div class="erp-layout">
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="erp-sidebar">
+
+
+            <div class="sidebar-marca">
+
+                <img
+                    src="img/logo.png"
+                    alt="Franco Systems"
+                    class="sidebar-logo"
+                >
+
+                <div class="sidebar-marca-texto">
+
+                    <strong>
+                        FRANCO SYSTEMS
+                    </strong>
+
+                    <span>
+                        Business ERP
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <nav class="sidebar-menu">
+
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        PRINCIPAL
+                    </span>
+
+                    <a
+                        href="dashboard.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            ⌂
+                        </span>
+
+                        <span>
+                            Inicio
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        VENTAS
+                    </span>
+
+                    <a
+                        href="nueva-cotizacion.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            ＋
+                        </span>
+
+                        <span>
+                            Nueva Cotización
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="cotizaciones.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            ▤
+                        </span>
+
+                        <span>
+                            Cotizaciones
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        GESTIÓN
+                    </span>
+
+                    <a
+                        href="clientes.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            ♙
+                        </span>
+
+                        <span>
+                            Clientes
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="productos.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            □
+                        </span>
+
+                        <span>
+                            Productos
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        SISTEMA
+                    </span>
+
+                    <a
+                        href="configuracion.html"
+                        class="sidebar-item activo"
+                    >
+                        <span class="sidebar-icono">
+                            ⚙
+                        </span>
+
+                        <span>
+                            Configuración
+                        </span>
+                    </a>
+
+                </div>
+
+
+            </nav>
+
+
+            <div class="sidebar-pie">
+
+                <strong>
+                    Franco Systems
+                </strong>
+
+                <span>
+                    Business ERP v1.0
+                </span>
+
+            </div>
+
+
+        </aside>
+
+
+
+        <!-- PRINCIPAL -->
+
+        <div class="erp-principal">
+
+
+            <header class="erp-topbar">
+
+
+                <div class="topbar-pagina">
+
+                    <h2>
+                        Configuración
+                    </h2>
+
+                    <span>
+                        Empresa y preferencias del sistema
+                    </span>
+
+                </div>
+
+
+                <div class="topbar-derecha">
+
+
+                    <div class="topbar-empresa">
+
+                        <span>
+                            EMPRESA
+                        </span>
+
+                        <strong id="empresaActual">
+                            Mi Empresa
+                        </strong>
+
+                    </div>
+
+
+                    <div class="topbar-separador"></div>
+
+
+                    <div
+                        class="usuario-avatar"
+                        id="usuarioAvatar"
+                    >
+                        A
+                    </div>
+
+
+                    <div class="usuario-info">
+
+                        <strong id="usuarioActual">
+                            ADMIN
+                        </strong>
+
+                        <span>
+                            Administrador
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="btnCerrarSesion"
+                        class="btn-salir"
+                    >
+                        Salir
+                    </button>
+
+
+                </div>
+
+
+            </header>
+
+
+
+            <main class="erp-contenido">
+
+
+                <section class="dashboard-encabezado">
+
+                    <span class="dashboard-etiqueta">
+                        CONFIGURACIÓN
+                    </span>
+
+                    <h1>
+                        Datos de la empresa
+                    </h1>
+
+                    <p>
+                        Esta información pertenecerá a la empresa
+                        que utiliza Franco Systems.
+                    </p>
+
+                </section>
+
+
+
+                <!-- DATOS EMPRESA -->
+
+                <section class="config-panel">
+
+
+                    <div class="config-panel-titulo">
+
+                        <div>
+
+                            <h2>
+                                Información empresarial
+                            </h2>
+
+                            <p>
+                                Datos que aparecerán en documentos
+                                y cotizaciones.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="config-grid">
+
+
+                        <div class="config-campo config-doble">
+
+                            <label>
+                                Razón social
+                            </label>
+
+                            <input
+                                type="text"
+                                id="razonSocial"
+                                placeholder="Ej. Empresa ABC S.A.C."
+                            >
+
+                        </div>
+
+
+                        <div class="config-campo">
+
+                            <label>
+                                RUC
+                            </label>
+
+                            <input
+                                type="text"
+                                id="rucEmpresa"
+                                maxlength="11"
+                                placeholder="20123456789"
+                            >
+
+                        </div>
+
+
+                        <div class="config-campo">
+
+                            <label>
+                                Teléfono
+                            </label>
+
+                            <input
+                                type="text"
+                                id="telefonoEmpresa"
+                                placeholder="999 999 999"
+                            >
+
+                        </div>
+
+
+                        <div class="config-campo config-doble">
+
+                            <label>
+                                Dirección
+                            </label>
+
+                            <input
+                                type="text"
+                                id="direccionEmpresa"
+                                placeholder="Dirección fiscal de la empresa"
+                            >
+
+                        </div>
+
+
+                        <div class="config-campo">
+
+                            <label>
+                                Ciudad / Departamento
+                            </label>
+
+                            <input
+                                type="text"
+                                id="ubicacionEmpresa"
+                                placeholder="Trujillo - La Libertad"
+                            >
+
+                        </div>
+
+
+                        <div class="config-campo">
+
+                            <label>
+                                Correo electrónico
+                            </label>
+
+                            <input
+                                type="email"
+                                id="correoEmpresa"
+                                placeholder="empresa@correo.com"
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- LOGO EMPRESA -->
+
+                <section class="config-panel">
+
+
+                    <div class="config-panel-titulo">
+
+                        <div>
+
+                            <h2>
+                                Logo de la empresa
+                            </h2>
+
+                            <p>
+                                Este logo aparecerá en las cotizaciones
+                                y documentos de la empresa.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="config-logo-area">
+
+
+                        <div class="config-logo-preview">
+
+                            <img
+                                id="previewLogoEmpresa"
+                                alt="Logo de empresa"
+                            >
+
+                            <span id="textoSinLogo">
+                                Sin logo empresarial
+                            </span>
+
+                        </div>
+
+
+                        <div class="config-logo-opciones">
+
+                            <label
+                                for="logoEmpresa"
+                                class="btn-seleccionar-logo"
+                            >
+                                Seleccionar imagen
+                            </label>
+
+                            <input
+                                type="file"
+                                id="logoEmpresa"
+                                accept="image/png,image/jpeg,image/webp"
+                                hidden
+                            >
+
+                            <button
+                                type="button"
+                                id="btnQuitarLogo"
+                                class="btn-quitar-logo"
+                            >
+                                Quitar logo
+                            </button>
+
+                            <small>
+                                PNG, JPG o WEBP.
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- DOCUMENTOS -->
+
+                <section class="config-panel">
+
+
+                    <div class="config-panel-titulo">
+
+                        <div>
+
+                            <h2>
+                                Datos para documentos
+                            </h2>
+
+                            <p>
+                                Información adicional para cotizaciones
+                                y futuros comprobantes.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="config-grid">
+
+
+                        <div class="config-campo">
+
+                            <label>
+                                Nombre del responsable
+                            </label>
+
+                            <input
+                                type="text"
+                                id="responsableEmpresa"
+                                placeholder="Nombre del responsable"
+                            >
+
+                        </div>
+
+
+                        <div class="config-campo">
+
+                            <label>
+                                Cargo
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cargoResponsable"
+                                placeholder="Ej. Administrador"
+                            >
+
+                        </div>
+
+
+                        <div class="config-campo config-doble">
+
+                            <label>
+                                Mensaje final
+                            </label>
+
+                            <textarea
+                                id="mensajeFinal"
+                                rows="3"
+                                placeholder="Gracias por elegirnos..."
+                            ></textarea>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- GUARDAR -->
+
+                <div class="config-acciones">
+
+                    <button
+                        type="button"
+                        id="btnGuardarConfiguracion"
+                        class="btn-guardar-config"
+                    >
+                        Guardar Configuración
+                    </button>
+
+                </div>
+
+
+            </main>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script src="js/auth.js"></script>
+
+    <script src="js/configuracion.js"></script>
+
+
+</body>
+
+</html>

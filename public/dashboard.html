@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Dashboard | Franco Systems
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+
+<body class="pagina-app">
+
+
+    <div class="erp-layout">
+
+
+        <!-- ==========================================
+             BARRA LATERAL
+        =========================================== -->
+
+        <aside class="erp-sidebar">
+
+
+            <!-- MARCA -->
+
+            <div class="sidebar-marca">
+
+                <img
+                    src="img/logo.png"
+                    alt="Franco Systems"
+                    class="sidebar-logo"
+                >
+
+
+                <div class="sidebar-marca-texto">
+
+                    <strong>
+                        FRANCO SYSTEMS
+                    </strong>
+
+                    <span>
+                        Business ERP
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MENÚ -->
+
+            <nav class="sidebar-menu">
+
+
+                <!-- PRINCIPAL -->
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        PRINCIPAL
+                    </span>
+
+
+                    <a
+                        href="dashboard.html"
+                        class="sidebar-item activo"
+                    >
+
+                        <span class="sidebar-icono">
+                            ⌂
+                        </span>
+
+                        <span>
+                            Inicio
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- VENTAS -->
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        VENTAS
+                    </span>
+
+
+                    <a
+                        href="nueva-cotizacion.html"
+                        class="sidebar-item"
+                    >
+
+                        <span class="sidebar-icono">
+                            ＋
+                        </span>
+
+                        <span>
+                            Nueva Cotización
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="cotizaciones.html"
+                        class="sidebar-item"
+                    >
+
+                        <span class="sidebar-icono">
+                            ▤
+                        </span>
+
+                        <span>
+                            Cotizaciones
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- GESTIÓN -->
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        GESTIÓN
+                    </span>
+
+
+                    <a
+                        href="clientes.html"
+                        class="sidebar-item"
+                    >
+
+                        <span class="sidebar-icono">
+                            ♙
+                        </span>
+
+                        <span>
+                            Clientes
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="productos.html"
+                        class="sidebar-item"
+                    >
+
+                        <span class="sidebar-icono">
+                            □
+                        </span>
+
+                        <span>
+                            Productos
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- SISTEMA -->
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        SISTEMA
+                    </span>
+
+
+                    <a
+                        href="configuracion.html"
+                        class="sidebar-item"
+                    >
+
+                        <span class="sidebar-icono">
+                            ⚙
+                        </span>
+
+                        <span>
+                            Configuración
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+            </nav>
+
+
+
+            <!-- PIE SIDEBAR -->
+
+            <div class="sidebar-pie">
+
+                <strong>
+                    Franco Systems
+                </strong>
+
+                <span>
+                    Business ERP v1.0
+                </span>
+
+            </div>
+
+
+        </aside>
+
+
+
+        <!-- ==========================================
+             CONTENIDO
+        =========================================== -->
+
+        <div class="erp-principal">
+
+
+            <!-- ======================================
+                 BARRA SUPERIOR
+            ======================================= -->
+
+            <header class="erp-topbar">
+
+
+                <div class="topbar-pagina">
+
+                    <h2>
+                        Dashboard
+                    </h2>
+
+                    <span>
+                        Resumen general del sistema
+                    </span>
+
+                </div>
+
+
+
+                <div class="topbar-derecha">
+
+
+                    <!-- EMPRESA -->
+
+                    <div class="topbar-empresa">
+
+                        <span>
+                            EMPRESA
+                        </span>
+
+                        <strong id="empresaActual">
+                            Mi Empresa
+                        </strong>
+
+                    </div>
+
+
+                    <div class="topbar-separador"></div>
+
+
+                    <!-- USUARIO -->
+
+                    <div
+                        class="usuario-avatar"
+                        id="usuarioAvatar"
+                    >
+                        A
+                    </div>
+
+
+                    <div class="usuario-info">
+
+                        <strong id="usuarioActual">
+                            ADMIN
+                        </strong>
+
+                        <span>
+                            Administrador
+                        </span>
+
+                    </div>
+
+
+                    <!-- SALIR -->
+
+                    <button
+                        type="button"
+                        id="btnCerrarSesion"
+                        class="btn-salir"
+                    >
+                        Salir
+                    </button>
+
+
+                </div>
+
+
+            </header>
+
+
+
+            <!-- ======================================
+                 DASHBOARD
+            ======================================= -->
+
+            <main class="erp-contenido">
+
+
+                <!-- ENCABEZADO -->
+
+                <section class="dashboard-encabezado">
+
+                    <span class="dashboard-etiqueta">
+                        PANEL GENERAL
+                    </span>
+
+                    <h1>
+                        Resumen
+                    </h1>
+
+                    <p>
+                        Consulta rápidamente el estado de tus operaciones.
+                    </p>
+
+                </section>
+
+
+
+                <!-- ==================================
+                     TARJETAS
+                =================================== -->
+
+                <section class="dashboard-tarjetas">
+
+
+                    <!-- MONTO -->
+
+                    <article class="dashboard-tarjeta">
+
+                        <div class="tarjeta-icono azul">
+                            S/
+                        </div>
+
+
+                        <div class="tarjeta-contenido">
+
+                            <span>
+                                Monto del mes
+                            </span>
+
+                            <strong id="montoMesSoles">
+                                S/ 0.00
+                            </strong>
+
+                            <small id="montoMesDolares">
+                                $ 0.00
+                            </small>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- ACTIVAS -->
+
+                    <article class="dashboard-tarjeta">
+
+                        <div class="tarjeta-icono verde">
+                            ✓
+                        </div>
+
+
+                        <div class="tarjeta-contenido">
+
+                            <span>
+                                Cotizaciones activas
+                            </span>
+
+                            <strong id="cantidadActivas">
+                                0
+                            </strong>
+
+                            <small>
+                                Documentos vigentes
+                            </small>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- ANULADAS -->
+
+                    <article class="dashboard-tarjeta">
+
+                        <div class="tarjeta-icono rojo">
+                            ×
+                        </div>
+
+
+                        <div class="tarjeta-contenido">
+
+                            <span>
+                                Cotizaciones anuladas
+                            </span>
+
+                            <strong id="cantidadAnuladas">
+                                0
+                            </strong>
+
+                            <small>
+                                Documentos anulados
+                            </small>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- TOTAL -->
+
+                    <article class="dashboard-tarjeta">
+
+                        <div class="tarjeta-icono morado">
+                            #
+                        </div>
+
+
+                        <div class="tarjeta-contenido">
+
+                            <span>
+                                Total cotizaciones
+                            </span>
+
+                            <strong id="cantidadTotal">
+                                0
+                            </strong>
+
+                            <small>
+                                Historial total
+                            </small>
+
+                        </div>
+
+                    </article>
+
+
+                </section>
+
+
+
+                <!-- ==================================
+                     ACCESOS RÁPIDOS
+                =================================== -->
+
+                <section class="dashboard-panel">
+
+
+                    <div class="panel-cabecera">
+
+                        <div>
+
+                            <h2>
+                                Accesos rápidos
+                            </h2>
+
+                            <p>
+                                Ingresa directamente a las funciones principales.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="accesos-rapidos">
+
+
+                        <a
+                            href="nueva-cotizacion.html"
+                            class="acceso-card"
+                        >
+
+                            <span class="acceso-icono">
+                                ＋
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Nueva Cotización
+                                </strong>
+
+                                <small>
+                                    Crear un nuevo documento
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+
+                        <a
+                            href="clientes.html"
+                            class="acceso-card"
+                        >
+
+                            <span class="acceso-icono">
+                                ♙
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Clientes
+                                </strong>
+
+                                <small>
+                                    Gestionar clientes
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+
+                        <a
+                            href="productos.html"
+                            class="acceso-card"
+                        >
+
+                            <span class="acceso-icono">
+                                □
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Productos
+                                </strong>
+
+                                <small>
+                                    Catálogo de productos y servicios
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+
+                        <a
+                            href="configuracion.html"
+                            class="acceso-card"
+                        >
+
+                            <span class="acceso-icono">
+                                ⚙
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Configuración
+                                </strong>
+
+                                <small>
+                                    Empresa y preferencias
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- ==================================
+                     ÚLTIMAS COTIZACIONES
+                =================================== -->
+
+                <section class="dashboard-panel">
+
+
+                    <div class="panel-cabecera">
+
+
+                        <div>
+
+                            <h2>
+                                Últimas Cotizaciones
+                            </h2>
+
+                            <p>
+                                Últimos documentos registrados en el sistema.
+                            </p>
+
+                        </div>
+
+
+                        <a
+                            href="cotizaciones.html"
+                            class="ver-todas"
+                        >
+                            Ver todas →
+                        </a>
+
+
+                    </div>
+
+
+
+                    <div class="tabla-contenedor">
+
+
+                        <table class="tabla-dashboard">
+
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        N°
+                                    </th>
+
+                                    <th>
+                                        Cliente
+                                    </th>
+
+                                    <th>
+                                        Fecha
+                                    </th>
+
+                                    <th>
+                                        Total
+                                    </th>
+
+                                    <th>
+                                        Estado
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="tablaUltimasCotizaciones">
+
+
+                                <tr>
+
+                                    <td
+                                        colspan="5"
+                                        class="tabla-vacia"
+                                    >
+                                        Todavía no hay cotizaciones registradas.
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+
+
+                        </table>
+
+
+                    </div>
+
+
+                </section>
+
+
+            </main>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- AUTENTICACIÓN -->
+
+    <script src="js/auth.js"></script>
+
+
+    <!-- DASHBOARD -->
+
+    <script src="js/dashboard.js"></script>
+
+
+</body>
+
+</html>

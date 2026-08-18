@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Productos | Franco Systems
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+
+<body class="pagina-app">
+
+    <div class="erp-layout">
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="erp-sidebar">
+
+            <div class="sidebar-marca">
+
+                <img
+                    src="img/logo.png"
+                    alt="Franco Systems"
+                    class="sidebar-logo"
+                >
+
+                <div class="sidebar-marca-texto">
+
+                    <strong>
+                        FRANCO SYSTEMS
+                    </strong>
+
+                    <span>
+                        Business ERP
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <nav class="sidebar-menu">
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        PRINCIPAL
+                    </span>
+
+                    <a
+                        href="dashboard.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            ⌂
+                        </span>
+
+                        <span>
+                            Inicio
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        VENTAS
+                    </span>
+
+                    <a
+                        href="nueva-cotizacion.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            ＋
+                        </span>
+
+                        <span>
+                            Nueva Cotización
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="cotizaciones.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            ▤
+                        </span>
+
+                        <span>
+                            Cotizaciones
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        GESTIÓN
+                    </span>
+
+                    <a
+                        href="clientes.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            ♙
+                        </span>
+
+                        <span>
+                            Clientes
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="productos.html"
+                        class="sidebar-item activo"
+                    >
+                        <span class="sidebar-icono">
+                            □
+                        </span>
+
+                        <span>
+                            Productos
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        SISTEMA
+                    </span>
+
+                    <a
+                        href="configuracion.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            ⚙
+                        </span>
+
+                        <span>
+                            Configuración
+                        </span>
+                    </a>
+
+                </div>
+
+            </nav>
+
+
+            <div class="sidebar-pie">
+
+                <strong>
+                    Franco Systems
+                </strong>
+
+                <span>
+                    Business ERP v1.0
+                </span>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- PRINCIPAL -->
+
+        <div class="erp-principal">
+
+
+            <header class="erp-topbar">
+
+                <div class="topbar-pagina">
+
+                    <h2>
+                        Productos
+                    </h2>
+
+                    <span>
+                        Catálogo de productos y servicios
+                    </span>
+
+                </div>
+
+
+                <div class="topbar-derecha">
+
+                    <div class="topbar-empresa">
+
+                        <span>
+                            EMPRESA
+                        </span>
+
+                        <strong id="empresaActual">
+                            Mi Empresa
+                        </strong>
+
+                    </div>
+
+
+                    <div class="topbar-separador"></div>
+
+
+                    <div
+                        class="usuario-avatar"
+                        id="usuarioAvatar"
+                    >
+                        A
+                    </div>
+
+
+                    <div class="usuario-info">
+
+                        <strong id="usuarioActual">
+                            ADMIN
+                        </strong>
+
+                        <span>
+                            Administrador
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="btnCerrarSesion"
+                        class="btn-salir"
+                    >
+                        Salir
+                    </button>
+
+                </div>
+
+            </header>
+
+
+
+            <main class="erp-contenido">
+
+
+                <!-- ENCABEZADO -->
+
+                <section class="dashboard-encabezado">
+
+                    <span class="dashboard-etiqueta">
+                        GESTIÓN
+                    </span>
+
+                    <h1>
+                        Productos y Servicios
+                    </h1>
+
+                    <p>
+                        Registra y reutiliza los ítems que usas en tus cotizaciones.
+                    </p>
+
+                </section>
+
+
+
+                <!-- FORMULARIO -->
+
+                <section class="productos-panel">
+
+                    <div class="panel-cabecera">
+
+                        <div>
+
+                            <h2 id="tituloFormularioProducto">
+                                Nuevo Producto o Servicio
+                            </h2>
+
+                            <p>
+                                Registra los datos principales del ítem.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="productos-form-grid">
+
+
+                        <div class="producto-campo">
+
+                            <label for="codigoProducto">
+                                Código
+                            </label>
+
+                            <input
+                                type="text"
+                                id="codigoProducto"
+                                placeholder="Ej. P001"
+                            >
+
+                        </div>
+
+
+                        <div class="producto-campo">
+
+                            <label for="tipoProducto">
+                                Tipo
+                            </label>
+
+                            <select id="tipoProducto">
+
+                                <option value="PRODUCTO">
+                                    PRODUCTO
+                                </option>
+
+                                <option value="SERVICIO">
+                                    SERVICIO
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="producto-campo producto-doble">
+
+                            <label for="descripcionProducto">
+                                Descripción
+                            </label>
+
+                            <input
+                                type="text"
+                                id="descripcionProducto"
+                                placeholder="Descripción del producto o servicio"
+                            >
+
+                        </div>
+
+
+                        <div class="producto-campo">
+
+                            <label for="unidadProducto">
+                                Unidad
+                            </label>
+
+                            <input
+                                type="text"
+                                id="unidadProducto"
+                                placeholder="Ej. UND, SERV, KG, M"
+                            >
+
+                        </div>
+
+
+                        <div class="producto-campo">
+
+                            <label for="monedaProducto">
+                                Moneda
+                            </label>
+
+                            <select id="monedaProducto">
+
+                                <option value="SOLES">
+                                    SOLES
+                                </option>
+
+                                <option value="DOLARES">
+                                    DÓLARES
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="producto-campo">
+
+                            <label for="modoPrecioProducto">
+                                Tipo de precio
+                            </label>
+
+                            <select id="modoPrecioProducto">
+
+                                <option value="SIN_IGV">
+                                    Valor sin IGV
+                                </option>
+
+                                <option value="CON_IGV">
+                                    Precio incluye IGV
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="producto-campo">
+
+                            <label for="precioProducto">
+                                Importe unitario
+                            </label>
+
+                            <input
+                                type="number"
+                                id="precioProducto"
+                                min="0"
+                                step="0.01"
+                                placeholder="0.00"
+                            >
+
+                        </div>
+
+
+                        <div class="producto-campo">
+
+                            <label for="valorSinIgvProducto">
+                                Valor sin IGV
+                            </label>
+
+                            <input
+                                type="text"
+                                id="valorSinIgvProducto"
+                                readonly
+                            >
+
+                        </div>
+
+
+                        <div class="producto-campo">
+
+                            <label for="precioConIgvProducto">
+                                Precio con IGV
+                            </label>
+
+                            <input
+                                type="text"
+                                id="precioConIgvProducto"
+                                readonly
+                            >
+
+                        </div>
+
+
+                        <div class="producto-campo producto-doble">
+
+                            <label for="observacionProducto">
+                                Observación
+                            </label>
+
+                            <input
+                                type="text"
+                                id="observacionProducto"
+                                placeholder="Opcional"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="productos-form-acciones">
+
+                        <button
+                            type="button"
+                            id="btnLimpiarProducto"
+                            class="btn-producto-secundario"
+                        >
+                            Limpiar
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="btnGuardarProducto"
+                            class="btn-producto-guardar"
+                        >
+                            Guardar Producto
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- LISTA -->
+
+                <section class="productos-panel">
+
+                    <div class="productos-lista-cabecera">
+
+                        <div>
+
+                            <h2>
+                                Productos registrados
+                            </h2>
+
+                            <p>
+                                Busca por código o descripción.
+                            </p>
+
+                        </div>
+
+
+                        <input
+                            type="search"
+                            id="buscarProducto"
+                            class="buscar-producto"
+                            placeholder="Buscar producto..."
+                        >
+
+                    </div>
+
+
+                    <div class="tabla-contenedor">
+
+                        <table class="tabla-productos">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Tipo</th>
+                                    <th>Descripción</th>
+                                    <th>Unidad</th>
+                                    <th>Moneda</th>
+                                    <th>Modo</th>
+                                    <th>Sin IGV</th>
+                                    <th>Con IGV</th>
+                                    <th>Acción</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="tablaProductos">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/auth.js"></script>
+    <script src="js/productos.js"></script>
+
+</body>
+
+</html>

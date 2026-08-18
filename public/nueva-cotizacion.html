@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Nueva Cotización | Franco Systems
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+
+<body class="pagina-app">
+
+<div class="erp-layout">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="erp-sidebar">
+
+        <div class="sidebar-marca">
+
+            <img
+                src="img/logo.png"
+                alt="Franco Systems"
+                class="sidebar-logo"
+            >
+
+            <div class="sidebar-marca-texto">
+
+                <strong>
+                    FRANCO SYSTEMS
+                </strong>
+
+                <span>
+                    Business ERP
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <div class="sidebar-grupo">
+
+                <span class="sidebar-titulo">
+                    PRINCIPAL
+                </span>
+
+                <a
+                    href="dashboard.html"
+                    class="sidebar-item"
+                >
+                    <span class="sidebar-icono">⌂</span>
+                    <span>Inicio</span>
+                </a>
+
+            </div>
+
+
+            <div class="sidebar-grupo">
+
+                <span class="sidebar-titulo">
+                    VENTAS
+                </span>
+
+                <a
+                    href="nueva-cotizacion.html"
+                    class="sidebar-item activo"
+                >
+                    <span class="sidebar-icono">＋</span>
+                    <span>Nueva Cotización</span>
+                </a>
+
+                <a
+                    href="cotizaciones.html"
+                    class="sidebar-item"
+                >
+                    <span class="sidebar-icono">▤</span>
+                    <span>Cotizaciones</span>
+                </a>
+
+            </div>
+
+
+            <div class="sidebar-grupo">
+
+                <span class="sidebar-titulo">
+                    GESTIÓN
+                </span>
+
+                <a
+                    href="clientes.html"
+                    class="sidebar-item"
+                >
+                    <span class="sidebar-icono">♙</span>
+                    <span>Clientes</span>
+                </a>
+
+                <a
+                    href="productos.html"
+                    class="sidebar-item"
+                >
+                    <span class="sidebar-icono">□</span>
+                    <span>Productos</span>
+                </a>
+
+            </div>
+
+
+            <div class="sidebar-grupo">
+
+                <span class="sidebar-titulo">
+                    SISTEMA
+                </span>
+
+                <a
+                    href="configuracion.html"
+                    class="sidebar-item"
+                >
+                    <span class="sidebar-icono">⚙</span>
+                    <span>Configuración</span>
+                </a>
+
+            </div>
+
+        </nav>
+
+
+        <div class="sidebar-pie">
+
+            <strong>
+                Franco Systems
+            </strong>
+
+            <span>
+                Business ERP v1.0
+            </span>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- PRINCIPAL -->
+
+    <div class="erp-principal">
+
+
+        <header class="erp-topbar">
+
+            <div class="topbar-pagina">
+
+                <h2>
+                    Nueva Cotización
+                </h2>
+
+                <span>
+                    Registro de una nueva operación
+                </span>
+
+            </div>
+
+
+            <div class="topbar-derecha">
+
+                <div class="topbar-empresa">
+
+                    <span>
+                        EMPRESA
+                    </span>
+
+                    <strong id="empresaActual">
+                        Mi Empresa
+                    </strong>
+
+                </div>
+
+
+                <div class="topbar-separador"></div>
+
+
+                <div
+                    class="usuario-avatar"
+                    id="usuarioAvatar"
+                >
+                    A
+                </div>
+
+
+                <div class="usuario-info">
+
+                    <strong id="usuarioActual">
+                        ADMIN
+                    </strong>
+
+                    <span>
+                        Administrador
+                    </span>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="btnCerrarSesion"
+                    class="btn-salir"
+                >
+                    Salir
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <main class="erp-contenido">
+
+
+            <section class="dashboard-encabezado">
+
+                <span class="dashboard-etiqueta">
+                    VENTAS
+                </span>
+
+                <h1>
+                    Nueva Cotización
+                </h1>
+
+                <p>
+                    Registra los datos del cliente y los productos o servicios.
+                </p>
+
+            </section>
+
+
+
+            <!-- DATOS GENERALES -->
+
+            <section class="cotizacion-panel">
+
+                <div class="panel-cabecera">
+
+                    <div>
+
+                        <h2>
+                            Datos generales
+                        </h2>
+
+                        <p>
+                            Información principal del documento.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="cotizacion-grid">
+
+
+                    <div class="cotizacion-campo">
+
+                        <label for="numeroCotizacion">
+                            N.º Cotización
+                        </label>
+
+                        <input
+                            type="text"
+                            id="numeroCotizacion"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="cotizacion-campo">
+
+                        <label for="fechaEmision">
+                            Fecha de emisión
+                        </label>
+
+                        <input
+                            type="date"
+                            id="fechaEmision"
+                        >
+
+                    </div>
+
+
+                    <div class="cotizacion-campo">
+
+                        <label for="documentoClienteCot">
+                            RUC / DNI
+                        </label>
+
+                        <div class="campo-con-boton">
+
+                            <input
+                                type="text"
+                                id="documentoClienteCot"
+                                maxlength="11"
+                                placeholder="Ingrese RUC o DNI"
+                            >
+
+                            <button
+                                type="button"
+                                id="btnBuscarCliente"
+                                class="btn-buscar-documento"
+                            >
+                                Buscar
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="cotizacion-campo">
+
+                        <label for="clienteCot">
+                            Cliente
+                        </label>
+
+                        <input
+                            type="text"
+                            id="clienteCot"
+                            placeholder="Nombre o razón social"
+                            list="listaClientes"
+                        >
+
+                        <datalist id="listaClientes"></datalist>
+
+                    </div>
+
+
+                    <div class="cotizacion-campo cotizacion-doble">
+
+                        <label for="direccionCot">
+                            Dirección
+                        </label>
+
+                        <input
+                            type="text"
+                            id="direccionCot"
+                            placeholder="Dirección del cliente"
+                        >
+
+                    </div>
+
+
+                    <div class="cotizacion-campo">
+
+                        <label for="monedaCot">
+                            Moneda
+                        </label>
+
+                        <select id="monedaCot">
+
+                            <option value="SOLES">
+                                SOLES
+                            </option>
+
+                            <option value="DOLARES">
+                                DÓLARES
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="cotizacion-campo">
+
+                        <label for="comprobanteCot">
+                            Comprobante a emitir
+                        </label>
+
+                        <select id="comprobanteCot">
+
+                            <option value="BOLETA">
+                                BOLETA
+                            </option>
+
+                            <option value="FACTURA">
+                                FACTURA
+                            </option>
+
+                            <option value="RH">
+                                RECIBO POR HONORARIOS
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="cotizacion-campo">
+
+                        <label for="modoPrecioCot">
+                            Tipo de precio
+                        </label>
+
+                        <select id="modoPrecioCot">
+
+                            <option value="SIN_IGV">
+                                Valor sin IGV
+                            </option>
+
+                            <option value="CON_IGV">
+                                Precio incluye IGV
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="cotizacion-campo">
+
+                        <label for="descuentoCot">
+                            Descuento (%)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="descuentoCot"
+                            min="0"
+                            max="100"
+                            step="0.01"
+                            placeholder="0"
+                        >
+
+                    </div>
+
+
+                    <div class="cotizacion-campo cotizacion-doble">
+
+                        <label for="condicionesCot">
+                            Condiciones de cotización
+                        </label>
+
+                        <textarea
+                            id="condicionesCot"
+                            rows="3"
+                            placeholder="Ej. Pago al contado, entrega en 3 días..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- DETALLE -->
+
+            <section class="cotizacion-panel">
+
+                <div class="panel-cabecera">
+
+                    <div>
+
+                        <h2>
+                            Detalle de la Cotización
+                        </h2>
+
+                        <p>
+                            Agrega productos o servicios.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <datalist id="listaCodigosProductos"></datalist>
+
+
+                <div class="tabla-contenedor">
+
+                    <table class="tabla-cotizacion">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>N°</th>
+                                <th>Unidad</th>
+                                <th>Código</th>
+                                <th>Descripción</th>
+                                <th>Cant.</th>
+
+                                <th id="cabeceraPrecio">
+                                    Valor Unit.
+                                </th>
+
+                                <th>Total</th>
+                                <th>Acción</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="detalleCotizacion"></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="agregar-item-area">
+
+                    <button
+                        type="button"
+                        id="btnAgregarItem"
+                        class="btn-agregar-item"
+                    >
+                        + Agregar ítem
+                    </button>
+
+                </div>
+
+
+                <div class="cotizacion-resumen-area">
+
+
+                    <div class="importe-letras">
+
+                        <span>
+                            Importe en letras
+                        </span>
+
+                        <strong id="importeLetras">
+                            SON CERO Y 00/100 SOLES
+                        </strong>
+
+                    </div>
+
+
+                    <div class="resumen-cotizacion">
+
+
+                        <div class="resumen-fila">
+
+                            <span>
+                                SUBTOTAL
+                            </span>
+
+                            <strong id="subtotalCot">
+                                S/ 0.00
+                            </strong>
+
+                        </div>
+
+
+                        <div class="resumen-fila">
+
+                            <span id="textoDescuentoCot">
+                                DESCUENTO 0%
+                            </span>
+
+                            <strong id="montoDescuentoCot">
+                                S/ 0.00
+                            </strong>
+
+                        </div>
+
+
+                        <div class="resumen-fila">
+
+                            <span>
+                                BASE IMPONIBLE
+                            </span>
+
+                            <strong id="baseImponibleCot">
+                                S/ 0.00
+                            </strong>
+
+                        </div>
+
+
+                        <div class="resumen-fila">
+
+                            <span id="textoImpuestoCot">
+                                IGV 18%
+                            </span>
+
+                            <strong id="montoImpuestoCot">
+                                S/ 0.00
+                            </strong>
+
+                        </div>
+
+
+                        <div class="resumen-fila resumen-total">
+
+                            <span>
+                                IMPORTE TOTAL
+                            </span>
+
+                            <strong id="importeTotalCot">
+                                S/ 0.00
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="acciones-cotizacion">
+
+                    <button
+                        type="button"
+                        id="btnLimpiarCotizacion"
+                        class="btn-cotizacion-secundario"
+                    >
+                        Limpiar
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="btnGuardarCotizacion"
+                        class="btn-cotizacion-guardar"
+                    >
+                        Guardar Cotización
+                    </button>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<script src="js/auth.js"></script>
+<script src="js/cotizacion.js"></script>
+
+</body>
+
+</html>

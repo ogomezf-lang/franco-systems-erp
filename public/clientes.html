@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Clientes | Franco Systems
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+
+<body class="pagina-app">
+
+    <div class="erp-layout">
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="erp-sidebar">
+
+            <div class="sidebar-marca">
+
+                <img
+                    src="img/logo.png"
+                    alt="Franco Systems"
+                    class="sidebar-logo"
+                >
+
+                <div class="sidebar-marca-texto">
+
+                    <strong>
+                        FRANCO SYSTEMS
+                    </strong>
+
+                    <span>
+                        Business ERP
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <nav class="sidebar-menu">
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        PRINCIPAL
+                    </span>
+
+                    <a
+                        href="dashboard.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            ⌂
+                        </span>
+
+                        <span>
+                            Inicio
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        VENTAS
+                    </span>
+
+                    <a
+                        href="nueva-cotizacion.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            ＋
+                        </span>
+
+                        <span>
+                            Nueva Cotización
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="cotizaciones.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            ▤
+                        </span>
+
+                        <span>
+                            Cotizaciones
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        GESTIÓN
+                    </span>
+
+                    <a
+                        href="clientes.html"
+                        class="sidebar-item activo"
+                    >
+                        <span class="sidebar-icono">
+                            ♙
+                        </span>
+
+                        <span>
+                            Clientes
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="productos.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            □
+                        </span>
+
+                        <span>
+                            Productos
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <div class="sidebar-grupo">
+
+                    <span class="sidebar-titulo">
+                        SISTEMA
+                    </span>
+
+                    <a
+                        href="configuracion.html"
+                        class="sidebar-item"
+                    >
+                        <span class="sidebar-icono">
+                            ⚙
+                        </span>
+
+                        <span>
+                            Configuración
+                        </span>
+                    </a>
+
+                </div>
+
+            </nav>
+
+
+            <div class="sidebar-pie">
+
+                <strong>
+                    Franco Systems
+                </strong>
+
+                <span>
+                    Business ERP v1.0
+                </span>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- PRINCIPAL -->
+
+        <div class="erp-principal">
+
+
+            <header class="erp-topbar">
+
+                <div class="topbar-pagina">
+
+                    <h2>
+                        Clientes
+                    </h2>
+
+                    <span>
+                        Gestión de clientes registrados
+                    </span>
+
+                </div>
+
+
+                <div class="topbar-derecha">
+
+                    <div class="topbar-empresa">
+
+                        <span>
+                            EMPRESA
+                        </span>
+
+                        <strong id="empresaActual">
+                            Mi Empresa
+                        </strong>
+
+                    </div>
+
+
+                    <div class="topbar-separador"></div>
+
+
+                    <div
+                        class="usuario-avatar"
+                        id="usuarioAvatar"
+                    >
+                        A
+                    </div>
+
+
+                    <div class="usuario-info">
+
+                        <strong id="usuarioActual">
+                            ADMIN
+                        </strong>
+
+                        <span>
+                            Administrador
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="btnCerrarSesion"
+                        class="btn-salir"
+                    >
+                        Salir
+                    </button>
+
+                </div>
+
+            </header>
+
+
+
+            <main class="erp-contenido">
+
+
+                <!-- ENCABEZADO -->
+
+                <section class="dashboard-encabezado">
+
+                    <span class="dashboard-etiqueta">
+                        GESTIÓN
+                    </span>
+
+                    <h1>
+                        Clientes
+                    </h1>
+
+                    <p>
+                        Registra y reutiliza los datos de tus clientes.
+                    </p>
+
+                </section>
+
+
+
+                <!-- FORMULARIO -->
+
+                <section class="clientes-panel">
+
+
+                    <div class="panel-cabecera">
+
+                        <div>
+
+                            <h2 id="tituloFormularioCliente">
+                                Nuevo Cliente
+                            </h2>
+
+                            <p>
+                                Registra los datos principales del cliente.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="clientes-form-grid">
+
+
+                        <div class="cliente-campo">
+
+                            <label for="documentoCliente">
+                                RUC / DNI
+                            </label>
+
+                            <input
+                                type="text"
+                                id="documentoCliente"
+                                maxlength="11"
+                                placeholder="Ingrese RUC o DNI"
+                            >
+
+                        </div>
+
+
+                        <div class="cliente-campo">
+
+                            <label for="tipoCliente">
+                                Tipo
+                            </label>
+
+                            <input
+                                type="text"
+                                id="tipoCliente"
+                                value=""
+                                placeholder="Automático"
+                                readonly
+                            >
+
+                        </div>
+
+
+                        <div class="cliente-campo cliente-doble">
+
+                            <label for="nombreCliente">
+                                Nombre / Razón social
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nombreCliente"
+                                placeholder="Nombre o razón social"
+                            >
+
+                        </div>
+
+
+                        <div class="cliente-campo cliente-doble">
+
+                            <label for="direccionCliente">
+                                Dirección
+                            </label>
+
+                            <input
+                                type="text"
+                                id="direccionCliente"
+                                placeholder="Dirección del cliente"
+                            >
+
+                        </div>
+
+
+                        <div class="cliente-campo">
+
+                            <label for="telefonoCliente">
+                                Teléfono
+                            </label>
+
+                            <input
+                                type="text"
+                                id="telefonoCliente"
+                                placeholder="Teléfono"
+                            >
+
+                        </div>
+
+
+                        <div class="cliente-campo">
+
+                            <label for="correoCliente">
+                                Correo
+                            </label>
+
+                            <input
+                                type="email"
+                                id="correoCliente"
+                                placeholder="correo@cliente.com"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="clientes-form-acciones">
+
+                        <button
+                            type="button"
+                            id="btnCancelarCliente"
+                            class="btn-cliente-secundario"
+                        >
+                            Limpiar
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="btnGuardarCliente"
+                            class="btn-cliente-guardar"
+                        >
+                            Guardar Cliente
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- HISTORIAL -->
+
+                <section class="clientes-panel">
+
+
+                    <div class="clientes-lista-cabecera">
+
+                        <div>
+
+                            <h2>
+                                Clientes registrados
+                            </h2>
+
+                            <p>
+                                Busca por RUC, DNI o nombre.
+                            </p>
+
+                        </div>
+
+
+                        <input
+                            type="search"
+                            id="buscarCliente"
+                            class="buscar-cliente"
+                            placeholder="Buscar cliente..."
+                        >
+
+                    </div>
+
+
+                    <div class="tabla-contenedor">
+
+                        <table class="tabla-clientes">
+
+                            <thead>
+
+                                <tr>
+                                    <th>RUC / DNI</th>
+                                    <th>Tipo</th>
+                                    <th>Cliente</th>
+                                    <th>Dirección</th>
+                                    <th>Teléfono</th>
+                                    <th>Correo</th>
+                                    <th>Acción</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="tablaClientes">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/auth.js"></script>
+    <script src="js/clientes.js"></script>
+
+</body>
+
+</html>
