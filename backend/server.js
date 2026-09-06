@@ -138,9 +138,18 @@ function money(value) {
 }
 
 function normalizeRole(role) {
-  return String(role || "").toUpperCase() === "OPERADOR" ? "OPERADOR" : "ADMIN";
-}
+  const value = String(role || "").toUpperCase();
 
+  if (value === "SUPERADMIN") return "SUPERADMIN";
+  if (value === "OPERADOR") return "OPERADOR";
+
+  return "ADMIN";
+}
+function normalizeCompanyRole(role) {
+  const value = String(role || "").toUpperCase();
+
+  return value === "OPERADOR" ? "OPERADOR" : "ADMIN";
+}
 function calcQuote(items, documentType, discountPercentInput, priceModeInput) {
   const cleanItems = (Array.isArray(items) ? items : [])
     .map((item, index) => {
@@ -201,9 +210,23 @@ function calcQuote(items, documentType, discountPercentInput, priceModeInput) {
 }
 
 function needAdmin(req, res, next) {
-  if (req.profile?.role !== "ADMIN") {
-    return res.status(403).json({ ok: false, message: "Solo un administrador puede realizar esta acción." });
+  if (!["ADMIN", "SUPERADMIN"].includes(req.profile?.role)) {
+    return res.status(403).json({
+      ok: false,
+      message: "Solo un administrador puede realizar esta acción."
+    });
   }
+
+  next();
+}
+function needSuperAdmin(req, res, next) {
+  if (req.profile?.role !== "SUPERADMIN") {
+    return res.status(403).json({
+      ok: false,
+      message: "Acceso exclusivo para SUPERADMIN."
+    });
+  }
+
   next();
 }
 
@@ -693,7 +716,7 @@ app.post("/api/users", authRequired, needAdmin, async (req, res) => {
   const email = cleanText(req.body.email, 250).toLowerCase();
   const password = String(req.body.password || "");
   const fullName = cleanText(req.body.full_name, 250) || email.split("@")[0];
-  const role = normalizeRole(req.body.role);
+  const role = normalizeCompanyRole(req.body.role);
 
   if (!email.includes("@") || password.length < 6) {
     return res.status(400).json({ ok: false, message: "Usa un correo válido y una contraseña de al menos 6 caracteres." });
@@ -748,7 +771,7 @@ app.patch("/api/users/:id", authRequired, needAdmin, async (req, res) => {
 
   const payload = {};
   if (req.body.full_name !== undefined) payload.full_name = cleanText(req.body.full_name, 250);
-  if (req.body.role !== undefined) payload.role = normalizeRole(req.body.role);
+  if (req.body.role !== undefined) payload.role = normalizeCompanyRole(req.body.role);
   if (req.body.active !== undefined) payload.active = Boolean(req.body.active);
 
   const { data, error } = await admin
@@ -781,7 +804,780 @@ app.delete("/api/users/:id", authRequired, needAdmin, async (req, res) => {
   if (error) return res.status(400).json({ ok: false, message: error.message });
   res.json({ ok: true });
 });
+// ---------------------------------------------------------
+// SUPERADMIN - EMPRESAS / LICENCIAS
+// ---------------------------------------------------------
 
+function normalizePlan(plan) {
+  const value = String(plan || "").toUpperCase();
+
+  const allowed = [
+    "PRUEBA",
+    "MENSUAL",
+    "ANUAL",
+    "PERMANENTE"
+  ];
+
+  return allowed.includes(value) ? value : "PRUEBA";
+}
+
+function normalizeCompanyStatus(status) {
+  const value = String(status || "").toUpperCase();
+
+  return value === "SUSPENDIDA"
+    ? "SUSPENDIDA"
+    : "ACTIVA";
+}
+
+function defaultLicenseDate(plan) {
+  const value = normalizePlan(plan);
+
+  if (value === "PERMANENTE") {
+    return null;
+  }
+
+  const date = new Date();
+
+  if (value === "ANUAL") {
+    date.setDate(date.getDate() + 365);
+  } else if (value === "MENSUAL") {
+    date.setDate(date.getDate() + 30);
+  } else {
+    date.setDate(date.getDate() + 7);
+  }
+
+  return date.toISOString().slice(0, 10);
+}
+
+
+// ---------------------------------------------------------
+// RESUMEN SUPERADMIN
+// ---------------------------------------------------------
+
+app.get(
+  "/api/superadmin/summary",
+  authRequired,
+  needSuperAdmin,
+  async (req, res) => {
+
+    const { data: companies, error: companiesError } =
+      await admin
+        .from("companies")
+        .select(`
+          id,
+          name,
+          ruc,
+          plan,
+          status,
+          license_expires_at,
+          max_users,
+          created_at
+        `)
+        .neq("id", req.profile.company_id);
+
+    if (companiesError) {
+      return res.status(500).json({
+        ok: false,
+        message: companiesError.message
+      });
+    }
+
+
+    const companyIds = (companies || []).map(c => c.id);
+
+    let profiles = [];
+
+    if (companyIds.length) {
+
+      const { data, error } =
+        await admin
+          .from("profiles")
+          .select(`
+            id,
+            company_id,
+            role,
+            active
+          `)
+          .in("company_id", companyIds);
+
+      if (error) {
+        return res.status(500).json({
+          ok: false,
+          message: error.message
+        });
+      }
+
+      profiles = data || [];
+    }
+
+
+    const today =
+      new Date().toISOString().slice(0, 10);
+
+    let activeCompanies = 0;
+    let suspendedCompanies = 0;
+    let expiredCompanies = 0;
+    let expiringSoon = 0;
+
+
+    for (const company of companies || []) {
+
+      const expiry =
+        company.license_expires_at || null;
+
+      const expired =
+        expiry && expiry < today;
+
+
+      if (company.status === "SUSPENDIDA") {
+        suspendedCompanies++;
+      }
+
+      if (expired) {
+        expiredCompanies++;
+      }
+
+      if (
+        company.status === "ACTIVA" &&
+        !expired
+      ) {
+        activeCompanies++;
+      }
+
+
+      if (expiry && !expired) {
+
+        const diff =
+          Math.ceil(
+            (
+              new Date(expiry) -
+              new Date(today)
+            ) /
+            86400000
+          );
+
+        if (diff <= 7) {
+          expiringSoon++;
+        }
+      }
+    }
+
+
+    res.json({
+      ok: true,
+
+      summary: {
+        total_companies:
+          companies?.length || 0,
+
+        active_companies:
+          activeCompanies,
+
+        suspended_companies:
+          suspendedCompanies,
+
+        expired_companies:
+          expiredCompanies,
+
+        expiring_soon:
+          expiringSoon,
+
+        total_users:
+          profiles.length
+      }
+    });
+  }
+);
+
+
+// ---------------------------------------------------------
+// LISTAR EMPRESAS
+// ---------------------------------------------------------
+
+app.get(
+  "/api/superadmin/companies",
+  authRequired,
+  needSuperAdmin,
+  async (req, res) => {
+
+    const { data: companies, error } =
+      await admin
+        .from("companies")
+        .select(`
+          id,
+          name,
+          ruc,
+          plan,
+          status,
+          license_expires_at,
+          max_users,
+          created_at,
+          updated_at
+        `)
+        .neq("id", req.profile.company_id)
+        .order("created_at", {
+          ascending: false
+        });
+
+
+    if (error) {
+      return res.status(500).json({
+        ok: false,
+        message: error.message
+      });
+    }
+
+
+    const result = [];
+
+
+    for (const company of companies || []) {
+
+      const { data: profiles } =
+        await admin
+          .from("profiles")
+          .select(`
+            id,
+            full_name,
+            role,
+            active,
+            created_at
+          `)
+          .eq("company_id", company.id)
+          .order("created_at", {
+            ascending: true
+          });
+
+
+      const companyUsers =
+        profiles || [];
+
+
+      const mainAdmin =
+        companyUsers.find(
+          u =>
+            u.role === "ADMIN" &&
+            u.active
+        ) ||
+        companyUsers.find(
+          u => u.role === "ADMIN"
+        );
+
+
+      let adminEmail = "";
+
+
+      if (mainAdmin?.id) {
+
+        const { data: authUser } =
+          await admin.auth.admin.getUserById(
+            mainAdmin.id
+          );
+
+        adminEmail =
+          authUser?.user?.email || "";
+      }
+
+
+      result.push({
+        ...company,
+
+        users_count:
+          companyUsers.length,
+
+        active_users:
+          companyUsers.filter(
+            u => u.active
+          ).length,
+
+        admin: mainAdmin
+          ? {
+              id: mainAdmin.id,
+              full_name:
+                mainAdmin.full_name,
+              email:
+                adminEmail,
+              active:
+                mainAdmin.active
+            }
+          : null
+      });
+    }
+
+
+    res.json({
+      ok: true,
+      companies: result
+    });
+  }
+);
+
+
+// ---------------------------------------------------------
+// CREAR EMPRESA + ADMIN PRINCIPAL
+// ---------------------------------------------------------
+
+app.post(
+  "/api/superadmin/companies",
+  authRequired,
+  needSuperAdmin,
+  async (req, res) => {
+
+    const name =
+      cleanText(req.body.name, 250);
+
+    const ruc =
+      cleanText(req.body.ruc, 20);
+
+    const adminEmail =
+      cleanText(
+        req.body.admin_email,
+        250
+      ).toLowerCase();
+
+    const adminPassword =
+      String(
+        req.body.admin_password || ""
+      );
+
+    const adminName =
+      cleanText(
+        req.body.admin_full_name,
+        250
+      ) ||
+      adminEmail.split("@")[0];
+
+
+    const plan =
+      normalizePlan(req.body.plan);
+
+    const status =
+      normalizeCompanyStatus(
+        req.body.status
+      );
+
+
+    let maxUsers =
+      Number(req.body.max_users || 3);
+
+    if (
+      !Number.isInteger(maxUsers) ||
+      maxUsers < 1 ||
+      maxUsers > 1000
+    ) {
+      maxUsers = 3;
+    }
+
+
+    let licenseExpiresAt =
+      req.body.license_expires_at
+        ? String(
+            req.body.license_expires_at
+          ).slice(0, 10)
+        : defaultLicenseDate(plan);
+
+
+    if (plan === "PERMANENTE") {
+      licenseExpiresAt = null;
+    }
+
+
+    if (!name) {
+      return res.status(400).json({
+        ok: false,
+        message:
+          "Ingresa el nombre de la empresa."
+      });
+    }
+
+
+    if (!adminEmail.includes("@")) {
+      return res.status(400).json({
+        ok: false,
+        message:
+          "Ingresa un correo válido para el administrador."
+      });
+    }
+
+
+    if (adminPassword.length < 6) {
+      return res.status(400).json({
+        ok: false,
+        message:
+          "La contraseña debe tener al menos 6 caracteres."
+      });
+    }
+
+
+    // Crear usuario en Supabase Auth.
+    // El trigger existente creará temporalmente:
+    // company + profile + settings + quote_sequence.
+
+    const {
+      data: created,
+      error: createError
+    } =
+      await admin.auth.admin.createUser({
+        email: adminEmail,
+        password: adminPassword,
+        email_confirm: true,
+
+        user_metadata: {
+          full_name: adminName,
+          company_name: name
+        }
+      });
+
+
+    if (
+      createError ||
+      !created?.user
+    ) {
+      return res.status(400).json({
+        ok: false,
+        message:
+          createError?.message ||
+          "No se pudo crear el administrador."
+      });
+    }
+
+
+    const userId =
+      created.user.id;
+
+
+    const {
+      data: profile,
+      error: profileError
+    } =
+      await admin
+        .from("profiles")
+        .select("company_id")
+        .eq("id", userId)
+        .single();
+
+
+    if (
+      profileError ||
+      !profile?.company_id
+    ) {
+
+      await admin.auth.admin.deleteUser(
+        userId
+      );
+
+      return res.status(500).json({
+        ok: false,
+        message:
+          "No se pudo crear la empresa asociada al usuario."
+      });
+    }
+
+
+    const companyId =
+      profile.company_id;
+
+
+    const {
+      data: company,
+      error: companyError
+    } =
+      await admin
+        .from("companies")
+        .update({
+          name,
+          ruc:
+            ruc || null,
+          plan,
+          status,
+          license_expires_at:
+            licenseExpiresAt,
+          max_users:
+            maxUsers
+        })
+        .eq("id", companyId)
+        .select()
+        .single();
+
+
+    if (companyError) {
+
+      await admin.auth.admin.deleteUser(
+        userId
+      );
+
+      await admin
+        .from("companies")
+        .delete()
+        .eq("id", companyId);
+
+
+      return res.status(400).json({
+        ok: false,
+        message:
+          companyError.message
+      });
+    }
+
+
+    const {
+      error: updateProfileError
+    } =
+      await admin
+        .from("profiles")
+        .update({
+          full_name:
+            adminName,
+          role:
+            "ADMIN",
+          active:
+            true
+        })
+        .eq("id", userId);
+
+
+    if (updateProfileError) {
+
+      await admin.auth.admin.deleteUser(
+        userId
+      );
+
+      await admin
+        .from("companies")
+        .delete()
+        .eq("id", companyId);
+
+
+      return res.status(400).json({
+        ok: false,
+        message:
+          updateProfileError.message
+      });
+    }
+
+
+    res.status(201).json({
+      ok: true,
+
+      company,
+
+      admin: {
+        id:
+          userId,
+        email:
+          adminEmail,
+        full_name:
+          adminName,
+        role:
+          "ADMIN"
+      }
+    });
+  }
+);
+
+
+// ---------------------------------------------------------
+// EDITAR / SUSPENDER / RENOVAR EMPRESA
+// ---------------------------------------------------------
+
+app.patch(
+  "/api/superadmin/companies/:id",
+  authRequired,
+  needSuperAdmin,
+  async (req, res) => {
+
+    const companyId =
+      req.params.id;
+
+
+    // El SUPERADMIN no puede alterar accidentalmente
+    // su propia empresa técnica.
+    if (
+      companyId ===
+      req.profile.company_id
+    ) {
+      return res.status(400).json({
+        ok: false,
+        message:
+          "No puedes modificar la empresa interna del SUPERADMIN."
+      });
+    }
+
+
+    const payload = {};
+
+
+    if (
+      req.body.name !== undefined
+    ) {
+
+      const name =
+        cleanText(
+          req.body.name,
+          250
+        );
+
+      if (!name) {
+        return res.status(400).json({
+          ok: false,
+          message:
+            "El nombre de la empresa es obligatorio."
+        });
+      }
+
+      payload.name = name;
+    }
+
+
+    if (
+      req.body.ruc !== undefined
+    ) {
+      payload.ruc =
+        cleanText(
+          req.body.ruc,
+          20
+        ) || null;
+    }
+
+
+    if (
+      req.body.plan !== undefined
+    ) {
+
+      payload.plan =
+        normalizePlan(
+          req.body.plan
+        );
+
+      if (
+        payload.plan ===
+        "PERMANENTE"
+      ) {
+        payload.license_expires_at =
+          null;
+      }
+    }
+
+
+    if (
+      req.body.status !== undefined
+    ) {
+      payload.status =
+        normalizeCompanyStatus(
+          req.body.status
+        );
+    }
+
+
+    if (
+      req.body.license_expires_at !==
+      undefined
+    ) {
+
+      const value =
+        req.body.license_expires_at;
+
+      payload.license_expires_at =
+        value
+          ? String(value).slice(0, 10)
+          : null;
+    }
+
+
+    if (
+      req.body.max_users !== undefined
+    ) {
+
+      const maxUsers =
+        Number(req.body.max_users);
+
+
+      if (
+        !Number.isInteger(maxUsers) ||
+        maxUsers < 1 ||
+        maxUsers > 1000
+      ) {
+        return res.status(400).json({
+          ok: false,
+          message:
+            "El límite de usuarios no es válido."
+        });
+      }
+
+
+      const {
+        count,
+        error: countError
+      } =
+        await admin
+          .from("profiles")
+          .select(
+            "id",
+            {
+              count: "exact",
+              head: true
+            }
+          )
+          .eq(
+            "company_id",
+            companyId
+          );
+
+
+      if (countError) {
+        return res.status(500).json({
+          ok: false,
+          message:
+            countError.message
+        });
+      }
+
+
+      if (
+        maxUsers <
+        Number(count || 0)
+      ) {
+        return res.status(400).json({
+          ok: false,
+          message:
+            `La empresa ya tiene ${count} usuario(s). No puedes establecer un límite menor.`
+        });
+      }
+
+
+      payload.max_users =
+        maxUsers;
+    }
+
+
+    const {
+      data,
+      error
+    } =
+      await admin
+        .from("companies")
+        .update(payload)
+        .eq("id", companyId)
+        .select()
+        .single();
+
+
+    if (error) {
+      return res.status(400).json({
+        ok: false,
+        message:
+          error.message
+      });
+    }
+
+
+    res.json({
+      ok: true,
+      company:
+        data
+    });
+  }
+);
 // ---------------------------------------------------------
 // DASHBOARD
 // ---------------------------------------------------------

@@ -105,3 +105,14 @@ a{color:inherit}button,input,select,textarea{font:inherit}button{cursor:pointer}
 @media(max-width:650px){.cuentas-form-grid,.cuentas-grid{grid-template-columns:1fr}.cuenta-campo-ancho{grid-column:auto}.historial-filtros{width:100%}.filtro-cotizacion{flex:1}.tabla-cotizaciones.card-table{display:block}.tabla-cotizaciones.card-table thead{display:none}.tabla-cotizaciones.card-table tbody,.tabla-cotizaciones.card-table tr,.tabla-cotizaciones.card-table td{display:block;width:100%}.tabla-cotizaciones.card-table tr{margin-bottom:10px;padding:10px;border:1px solid #dbe4ee;border-radius:9px;background:#fff}.tabla-cotizaciones.card-table td{display:flex;justify-content:space-between;gap:12px;padding:7px 3px;border:0!important;text-align:right}.tabla-cotizaciones.card-table td:before{content:attr(data-label);color:#8a98aa;font-size:9px;font-weight:900;text-transform:uppercase;text-align:left}.historial-acciones{flex-wrap:wrap}.historial-documento{display:inline;margin-left:5px}}
 @page{size:A4;margin:0}
 @media print{html,body{background:#fff!important}.pagina-documento .erp-sidebar,.pagina-documento .erp-topbar,.pagina-documento .bottom-nav,.pagina-documento .no-print{display:none!important}.pagina-documento .erp-principal{width:100%!important;margin:0!important}.pagina-documento .erp-content{padding:0!important}.documento-cotizacion{width:210mm;min-height:297mm;margin:0;padding:10mm 12mm;box-shadow:none}.doc-footer{left:12mm;right:12mm;bottom:9mm}.doc-sello-anulada{top:40mm;left:74mm}.doc-medios-pago{break-inside:avoid}}
+/* =========================================
+   FRANCO SYSTEMS - SUPERADMIN
+   ========================================= */
+
+.sidebar-superadmin-link {
+  display: none;
+}
+
+.user-superadmin .sidebar-superadmin-link {
+  display: flex;
+}
