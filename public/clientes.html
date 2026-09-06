@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071426">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Clientes | Franco Systems</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="pagina-app" data-page="clients">
+  <div class="erp-layout">
+    <div id="sidebarMount"></div>
+    <div class="erp-principal">
+      <div id="topbarMount"></div>
+      <main class="erp-content">
+        <div id="setupAlert" class="alert warning hidden"></div>
+
+        <section class="page-heading">
+          <span class="kicker">GESTIÓN</span>
+          <h1 id="pageTitle">Clientes</h1>
+          <p>Registra y reutiliza tus clientes en las cotizaciones.</p>
+        </section>
+
+        <section class="panel clientes-panel">
+          <div class="panel-cabecera">
+            <div>
+              <h2 id="tituloFormularioCliente">Nuevo Cliente</h2>
+              <p>Completa los datos principales. Al salir del campo DNI/RUC, Franco Systems intentará completar los datos automáticamente.</p>
+            </div>
+          </div>
+
+          <form id="clientForm" class="clientes-form-grid" autocomplete="off">
+            <div class="cliente-campo">
+              <label for="documentoCliente">DNI / RUC</label>
+              <input id="documentoCliente" class="input" inputmode="numeric" maxlength="11" placeholder="8 u 11 dígitos" required>
+            </div>
+
+            <div class="cliente-campo">
+              <label for="tipoCliente">Tipo</label>
+              <input id="tipoCliente" class="input" value="" placeholder="Se detecta automáticamente" readonly>
+            </div>
+
+            <div class="cliente-campo cliente-campo-ancho">
+              <label for="nombreCliente">Nombre / Razón social</label>
+              <input id="nombreCliente" class="input" required>
+            </div>
+
+            <div class="cliente-campo cliente-campo-ancho">
+              <label for="direccionCliente">Dirección</label>
+              <input id="direccionCliente" class="input">
+            </div>
+
+            <div class="cliente-campo">
+              <label for="telefonoCliente">Teléfono</label>
+              <input id="telefonoCliente" class="input">
+            </div>
+
+            <div class="cliente-campo">
+              <label for="correoCliente">Correo electrónico</label>
+              <input id="correoCliente" class="input" type="email">
+            </div>
+
+            <div class="clientes-form-acciones cliente-campo-ancho">
+              <button id="btnCancelarCliente" class="btn btn-secondary" type="button">Limpiar</button>
+              <button id="btnGuardarCliente" class="btn btn-primary" type="submit">Guardar Cliente</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel clientes-panel">
+          <div class="clientes-lista-cabecera">
+            <div>
+              <h2>Clientes registrados</h2>
+              <p>La información está sincronizada con Supabase y disponible en tus dispositivos.</p>
+            </div>
+            <div class="buscar-cliente">
+              <input id="buscarCliente" class="input" placeholder="Buscar por nombre, DNI o RUC">
+            </div>
+          </div>
+
+          <div class="tabla-contenedor">
+            <table class="tabla-clientes card-table">
+              <thead>
+                <tr>
+                  <th>Documento</th>
+                  <th>Tipo</th>
+                  <th>Cliente</th>
+                  <th>Dirección</th>
+                  <th>Teléfono</th>
+                  <th>Correo</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tablaClientes">
+                <tr><td colspan="7" class="empty">Cargando...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div id="bottomMount"></div>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/app-shell.js"></script>
+  <script src="js/pwa.js"></script>
+  <script src="js/clientes.js"></script>
+</body>
+</html>

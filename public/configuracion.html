@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071426">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Configuración | Franco Systems</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="pagina-app" data-page="settings">
+<div class="erp-layout">
+  <div id="sidebarMount"></div>
+  <div class="erp-principal">
+    <div id="topbarMount"></div>
+    <main class="erp-content">
+      <div id="setupAlert" class="alert warning hidden"></div>
+      <section class="page-heading">
+        <span class="kicker">CONFIGURACIÓN</span>
+        <h1>Datos de la empresa</h1>
+        <p>Esta información pertenecerá a la empresa que utiliza Franco Systems.</p>
+      </section>
+      <div class="alert warning hidden" id="settingsReadOnly">Tu usuario es OPERADOR. Solo un ADMIN puede modificar la configuración.</div>
+
+      <section class="config-panel">
+        <div class="config-panel-titulo"><div><h2>Información empresarial</h2><p>Datos que aparecerán en documentos y cotizaciones.</p></div></div>
+        <div class="config-grid">
+          <div class="config-campo config-doble"><label for="razonSocial">Razón social</label><input id="razonSocial" required></div>
+          <div class="config-campo"><label for="rucEmpresa">RUC</label><input id="rucEmpresa" maxlength="11" inputmode="numeric"></div>
+          <div class="config-campo"><label for="telefonoEmpresa">Teléfono</label><input id="telefonoEmpresa"></div>
+          <div class="config-campo config-doble"><label for="direccionEmpresa">Dirección</label><input id="direccionEmpresa"></div>
+          <div class="config-campo"><label for="ubicacionEmpresa">Ciudad / Departamento</label><input id="ubicacionEmpresa"></div>
+          <div class="config-campo"><label for="correoEmpresa">Correo electrónico</label><input id="correoEmpresa" type="email"></div>
+        </div>
+      </section>
+
+      <section class="config-panel">
+        <div class="config-panel-titulo"><div><h2>Logo de la empresa</h2><p>Este logo aparecerá en tus cotizaciones.</p></div></div>
+        <div class="config-logo-area">
+          <div class="config-logo-preview">
+            <img id="previewLogoEmpresa" alt="Logo empresa" style="display:none">
+            <span id="textoSinLogo">Sin logo empresarial</span>
+          </div>
+          <div class="config-logo-opciones">
+            <label for="logoEmpresa" class="btn-seleccionar-logo">Seleccionar imagen</label>
+            <input id="logoEmpresa" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+            <button id="btnQuitarLogo" type="button" class="btn-quitar-logo">Quitar logo</button>
+            <small>PNG, JPG o WEBP. Máximo 1 MB.</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="config-panel">
+        <div class="config-panel-titulo"><div><h2>Datos para documentos</h2><p>Información que aparece al pie de las cotizaciones.</p></div></div>
+        <div class="config-grid">
+          <div class="config-campo"><label for="responsableEmpresa">Nombre del responsable</label><input id="responsableEmpresa"></div>
+          <div class="config-campo"><label for="cargoResponsable">Cargo</label><input id="cargoResponsable"></div>
+          <div class="config-campo config-doble"><label for="mensajeFinal">Mensaje final</label><textarea id="mensajeFinal" rows="3"></textarea></div>
+        </div>
+      </section>
+
+      <div class="config-acciones"><button class="btn-guardar-config" id="btnGuardarConfiguracion" type="button">Guardar Configuración</button></div>
+    </main>
+  </div>
+  <div id="bottomMount"></div>
+</div>
+<script src="js/api.js"></script>
+<script src="js/app-shell.js"></script>
+<script src="js/pwa.js"></script>
+<script src="js/configuracion.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071426">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Usuarios | Franco Systems</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="pagina-app" data-page="users">
+  <div class="erp-layout">
+    <div id="sidebarMount"></div>
+    <div class="erp-principal">
+      <div id="topbarMount"></div>
+      <main class="erp-content">
+        <div id="setupAlert" class="alert warning hidden"></div>
+        <section class="page-heading">
+          <span class="kicker">SISTEMA</span>
+          <h1 id="pageTitle">Usuarios y permisos</h1>
+          <p>Crea accesos para trabajar desde diferentes dispositivos sin compartir una sola contraseña.</p>
+        </section>
+        
+<section class="panel">
+  <div class="panel-header">
+    <div><h2>Usuarios del sistema</h2><p>ADMIN puede configurar el sistema; OPERADOR puede trabajar con clientes, productos y cotizaciones.</p></div>
+    <button class="btn btn-primary" id="btnNewUser" type="button">＋ Nuevo usuario</button>
+  </div>
+  <div class="table-wrap">
+    <table class="table card-table">
+      <thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Estado</th><th>Creado</th><th></th></tr></thead>
+      <tbody id="usersTable"><tr><td colspan="6" class="empty">Cargando...</td></tr></tbody>
+    </table>
+  </div>
+</section>
+<div class="modal-backdrop" id="userModal">
+  <div class="modal">
+    <div class="modal-header"><div><span class="kicker">ACCESO</span><h3>Nuevo usuario</h3></div><button class="modal-close" id="userModalClose" type="button">✕</button></div>
+    <form id="userForm">
+      <div class="form-grid">
+        <div class="form-group full"><label>Nombre</label><input class="input" id="newUserName" required></div>
+        <div class="form-group"><label>Correo</label><input class="input" id="newUserEmail" type="email" required></div>
+        <div class="form-group"><label>Contraseña inicial</label><input class="input" id="newUserPassword" type="password" minlength="6" required></div>
+        <div class="form-group"><label>Rol</label><select class="select" id="newUserRole"><option value="OPERADOR">OPERADOR</option><option value="ADMIN">ADMIN</option></select></div>
+      </div>
+      <div class="quote-actions"><button class="btn btn-secondary" id="btnCancelUser" type="button">Cancelar</button><button class="btn btn-primary" type="submit">Crear usuario</button></div>
+    </form>
+  </div>
+</div>
+
+      </main>
+    </div>
+    <div id="bottomMount"></div>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/app-shell.js"></script>
+  <script src="js/pwa.js"></script>
+  <script src="js/usuarios.js"></script>
+</body>
+</html>

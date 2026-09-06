@@ -1,0 +1,15 @@
+let cotizaciones=[];
+let filtroActual="TODAS";
+const $=id=>document.getElementById(id);
+
+document.addEventListener("DOMContentLoaded",async()=>{
+  const me=await FrancoShell.init();if(!me)return;
+  $("buscarCotizacion").addEventListener("input",cargarTablaCotizaciones);
+  document.querySelectorAll(".filtro-cotizacion").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".filtro-cotizacion").forEach(x=>x.classList.remove("activo"));b.classList.add("activo");filtroActual=b.dataset.filtro;cargarTablaCotizaciones();}));
+  await cargarCotizaciones();
+});
+async function cargarCotizaciones(){try{const d=await FrancoAPI.apiFetch("/api/quotes");cotizaciones=d.quotes||[];cargarTablaCotizaciones();}catch(e){$("tablaCotizaciones").innerHTML=`<tr><td colspan="6" class="empty">${FrancoAPI.esc(e.message)}</td></tr>`;}}
+function formatearFecha(fecha){return FrancoAPI.date(fecha);}
+function obtenerCotizacionesFiltradas(){const t=$("buscarCotizacion").value.trim().toLowerCase();return cotizaciones.filter(q=>{const coincide=!t||String(q.quote_number||"").toLowerCase().includes(t)||String(q.client_name||"").toLowerCase().includes(t)||String(q.client_document||"").toLowerCase().includes(t);const estado=filtroActual==="TODAS"||q.status===filtroActual;return coincide&&estado;});}
+function cargarTablaCotizaciones(){const f=obtenerCotizacionesFiltradas();const tb=$("tablaCotizaciones");if(!f.length){tb.innerHTML='<tr><td colspan="6" class="empty">No hay cotizaciones para mostrar.</td></tr>';return;}tb.innerHTML=f.map(q=>{const simbolo=q.currency==="DOLARES"?"$":"S/";const anulada=q.status==="ANULADA";return `<tr class="${anulada?"fila-anulada":""}"><td data-label="N.º" class="texto-centro"><strong>${FrancoAPI.esc(q.quote_number||"-")}</strong></td><td data-label="Cliente"><strong>${FrancoAPI.esc(q.client_name||"Sin cliente")}</strong><small class="historial-documento">${FrancoAPI.esc(q.client_document||"")}</small></td><td data-label="Fecha" class="texto-centro">${formatearFecha(q.quote_date)}</td><td data-label="Total" class="texto-monto">${simbolo} ${Number(q.total_amount||0).toFixed(2)}</td><td data-label="Estado" class="texto-centro"><span class="estado-badge ${anulada?"estado-anulada":"estado-activa"}">${q.status||"ACTIVA"}</span></td><td data-label="Acciones" class="historial-acciones"><a class="btn-historial-ver" href="ver-cotizacion.html?id=${q.id}">Ver</a>${!anulada?`<a class="btn-historial-editar" href="nueva-cotizacion.html?id=${q.id}">Editar</a><button class="btn-historial-anular" type="button" onclick="cambiarEstado('${q.id}','ANULADA')">Anular</button>`:`<button class="btn-historial-reactivar" type="button" onclick="cambiarEstado('${q.id}','ACTIVA')">Reactivar</button>`}</td></tr>`;}).join("");}
+async function cambiarEstado(id,status){const q=cotizaciones.find(x=>x.id===id);if(!q)return;const texto=status==="ANULADA"?`¿Desea anular la cotización ${q.quote_number}?`:`¿Desea reactivar la cotización ${q.quote_number}?`;if(!confirm(texto))return;try{await FrancoAPI.apiFetch(`/api/quotes/${id}/status`,{method:"PATCH",body:JSON.stringify({status})});await cargarCotizaciones();}catch(e){alert(e.message);}}

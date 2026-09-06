@@ -1,0 +1,32 @@
+{
+  "name": "franco-systems-erp",
+  "version": "1.1.0",
+  "description": "Franco Systems Classic Cloud - interfaz Business ERP v1.0 con Supabase, PWA y backend seguro",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node --watch backend/server.js"
+  },
+  "keywords": [
+    "erp",
+    "cotizaciones",
+    "pwa",
+    "supabase"
+  ],
+  "author": "Franco Systems",
+  "license": "ISC",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.4",
+    "axios": "^1.19.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
+    "pdfkit": "^0.17.2"
+  }
+}

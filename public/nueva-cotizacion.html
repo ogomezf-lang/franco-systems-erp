@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071426">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Nueva Cotización | Franco Systems</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="pagina-app" data-page="quote_new">
+<div class="erp-layout">
+  <div id="sidebarMount"></div>
+
+  <div class="erp-principal">
+    <div id="topbarMount"></div>
+
+    <main class="erp-contenido">
+      <div id="setupAlert" class="alert warning hidden"></div>
+      <div id="quoteStatusAlert" class="alert error hidden"></div>
+
+      <section class="dashboard-encabezado">
+        <span class="dashboard-etiqueta">VENTAS</span>
+        <h1 id="pageTitle">Nueva Cotización</h1>
+        <p>Registra los datos del cliente y los productos o servicios.</p>
+      </section>
+
+      <form id="quoteForm" autocomplete="off">
+        <!-- DATOS GENERALES: MISMA ESTRUCTURA CLÁSICA -->
+        <section class="cotizacion-panel">
+          <div class="panel-cabecera">
+            <div>
+              <h2>Datos generales</h2>
+              <p>Información principal del documento.</p>
+            </div>
+          </div>
+
+          <div class="cotizacion-grid">
+            <div class="cotizacion-campo">
+              <label for="numeroCotizacion">N.º Cotización</label>
+              <input type="text" id="numeroCotizacion" readonly>
+            </div>
+
+            <div class="cotizacion-campo">
+              <label for="fechaEmision">Fecha de emisión</label>
+              <input type="date" id="fechaEmision" required>
+            </div>
+
+            <div class="cotizacion-campo">
+              <label for="documentoClienteCot">RUC / DNI</label>
+              <div class="campo-con-boton">
+                <input type="text" id="documentoClienteCot" maxlength="11" inputmode="numeric" placeholder="Ingrese RUC o DNI">
+                <button type="button" id="btnBuscarCliente" class="btn-buscar-documento">Buscar</button>
+              </div>
+            </div>
+
+            <div class="cotizacion-campo">
+              <label for="clienteCot">Cliente</label>
+              <input type="text" id="clienteCot" placeholder="Nombre o razón social" list="listaClientes" required>
+              <datalist id="listaClientes"></datalist>
+            </div>
+
+            <div class="cotizacion-campo cotizacion-doble">
+              <label for="direccionCot">Dirección</label>
+              <input type="text" id="direccionCot" placeholder="Dirección del cliente">
+            </div>
+
+            <div class="cotizacion-campo">
+              <label for="monedaCot">Moneda</label>
+              <select id="monedaCot">
+                <option value="SOLES">SOLES</option>
+                <option value="DOLARES">DÓLARES</option>
+              </select>
+            </div>
+
+            <div class="cotizacion-campo">
+              <label for="comprobanteCot">Comprobante a emitir</label>
+              <select id="comprobanteCot">
+                <option value="BOLETA">BOLETA</option>
+                <option value="FACTURA">FACTURA</option>
+                <option value="RH">RECIBO POR HONORARIOS</option>
+              </select>
+            </div>
+
+            <div class="cotizacion-campo">
+              <label for="modoPrecioCot">Tipo de precio</label>
+              <select id="modoPrecioCot">
+                <option value="SIN_IGV">Valor sin IGV</option>
+                <option value="CON_IGV">Precio incluye IGV</option>
+              </select>
+            </div>
+
+            <div class="cotizacion-campo">
+              <label for="descuentoCot">Descuento (%)</label>
+              <input type="number" id="descuentoCot" min="0" max="100" step="0.01" placeholder="0">
+            </div>
+
+            <div class="cotizacion-campo cotizacion-doble">
+              <label for="condicionesCot">Condiciones de cotización</label>
+              <textarea id="condicionesCot" rows="3" placeholder="Ej. Pago al contado, entrega en 3 días..."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- DETALLE -->
+        <section class="cotizacion-panel">
+          <div class="panel-cabecera">
+            <div>
+              <h2>Detalle de la Cotización</h2>
+              <p>Agrega productos o servicios.</p>
+            </div>
+          </div>
+
+          <datalist id="listaCodigosProductos"></datalist>
+
+          <div class="tabla-contenedor tabla-cotizacion-contenedor">
+            <table class="tabla-cotizacion">
+              <thead>
+                <tr>
+                  <th>N°</th>
+                  <th>Unidad</th>
+                  <th>Código</th>
+                  <th>Descripción</th>
+                  <th>Cant.</th>
+                  <th id="cabeceraPrecio">Valor Unit.</th>
+                  <th>Total</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="detalleCotizacion"></tbody>
+            </table>
+          </div>
+
+          <div class="agregar-item-area">
+            <button type="button" id="btnAgregarItem" class="btn-agregar-item">+ Agregar ítem</button>
+          </div>
+
+          <div class="cotizacion-resumen-area">
+            <div class="importe-letras">
+              <span>Importe en letras</span>
+              <strong id="importeLetras">SON CERO Y 00/100 SOLES</strong>
+            </div>
+
+            <div class="resumen-cotizacion">
+              <div class="resumen-fila">
+                <span>SUBTOTAL</span>
+                <strong id="subtotalCot">S/ 0.00</strong>
+              </div>
+              <div class="resumen-fila">
+                <span id="textoDescuentoCot">DESCUENTO 0%</span>
+                <strong id="montoDescuentoCot">- S/ 0.00</strong>
+              </div>
+              <div class="resumen-fila">
+                <span>BASE IMPONIBLE</span>
+                <strong id="baseImponibleCot">S/ 0.00</strong>
+              </div>
+              <div class="resumen-fila" id="filaImpuestoCot">
+                <span id="textoImpuestoCot">IGV 18%</span>
+                <strong id="montoImpuestoCot">S/ 0.00</strong>
+              </div>
+              <div class="resumen-fila resumen-total">
+                <span>IMPORTE TOTAL</span>
+                <strong id="importeTotalCot">S/ 0.00</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="acciones-cotizacion">
+            <button type="button" id="btnLimpiarCotizacion" class="btn-cotizacion-secundario">Limpiar</button>
+            <button type="submit" id="btnGuardarCotizacion" class="btn-cotizacion-guardar">Guardar Cotización</button>
+          </div>
+        </section>
+      </form>
+    </main>
+  </div>
+  <div id="bottomMount"></div>
+</div>
+<script src="js/api.js"></script>
+<script src="js/app-shell.js"></script>
+<script src="js/pwa.js"></script>
+<script src="js/cotizacion.js"></script>
+</body>
+</html>

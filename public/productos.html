@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071426">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Productos | Franco Systems</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="pagina-app" data-page="products">
+  <div class="erp-layout">
+    <div id="sidebarMount"></div>
+    <div class="erp-principal">
+      <div id="topbarMount"></div>
+      <main class="erp-content">
+        <div id="setupAlert" class="alert warning hidden"></div>
+
+        <section class="page-heading">
+          <span class="kicker">GESTIÓN</span>
+          <h1 id="pageTitle">Productos</h1>
+          <p>Registra productos y servicios para reutilizarlos al crear cotizaciones.</p>
+        </section>
+
+        <section class="panel productos-panel">
+          <div class="panel-cabecera">
+            <div>
+              <h2 id="tituloFormularioProducto">Nuevo Producto / Servicio</h2>
+              <p>Mantiene el catálogo clásico, ahora sincronizado con la nube.</p>
+            </div>
+          </div>
+
+          <form id="productForm" class="productos-form-grid" autocomplete="off">
+            <div class="producto-campo">
+              <label for="codigoProducto">Código</label>
+              <input id="codigoProducto" class="input" placeholder="Ej. P001">
+            </div>
+            <div class="producto-campo">
+              <label for="tipoProducto">Tipo</label>
+              <select id="tipoProducto" class="select">
+                <option value="PRODUCTO">PRODUCTO</option>
+                <option value="SERVICIO">SERVICIO</option>
+              </select>
+            </div>
+            <div class="producto-campo producto-campo-ancho">
+              <label for="descripcionProducto">Descripción</label>
+              <input id="descripcionProducto" class="input" required>
+            </div>
+            <div class="producto-campo">
+              <label for="unidadProducto">Unidad</label>
+              <input id="unidadProducto" class="input" value="UND" maxlength="20" required>
+            </div>
+            <div class="producto-campo">
+              <label for="monedaProducto">Moneda</label>
+              <select id="monedaProducto" class="select">
+                <option value="SOLES">SOLES</option>
+                <option value="DOLARES">DÓLARES</option>
+              </select>
+            </div>
+            <div class="producto-campo">
+              <label for="modoPrecioProducto">Precio ingresado</label>
+              <select id="modoPrecioProducto" class="select">
+                <option value="SIN_IGV">SIN IGV</option>
+                <option value="CON_IGV">CON IGV</option>
+              </select>
+            </div>
+            <div class="producto-campo">
+              <label for="precioProducto">Importe</label>
+              <input id="precioProducto" class="input" type="number" min="0" step="0.01" value="0.00" required>
+            </div>
+            <div class="producto-campo">
+              <label for="valorSinIgvProducto">Valor sin IGV</label>
+              <input id="valorSinIgvProducto" class="input calculado" readonly>
+            </div>
+            <div class="producto-campo">
+              <label for="precioConIgvProducto">Precio con IGV</label>
+              <input id="precioConIgvProducto" class="input calculado" readonly>
+            </div>
+            <div class="producto-campo producto-campo-ancho">
+              <label for="observacionProducto">Observación</label>
+              <input id="observacionProducto" class="input" placeholder="Opcional">
+            </div>
+
+            <div class="productos-form-acciones producto-campo-ancho">
+              <button id="btnLimpiarProducto" class="btn btn-secondary" type="button">Limpiar</button>
+              <button id="btnGuardarProducto" class="btn btn-primary" type="submit">Guardar Producto</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel productos-panel">
+          <div class="productos-lista-cabecera">
+            <div>
+              <h2>Productos registrados</h2>
+              <p>Catálogo disponible en cotizaciones desde web, PC o app.</p>
+            </div>
+            <div class="buscar-producto">
+              <input id="buscarProducto" class="input" placeholder="Buscar por código o descripción">
+            </div>
+          </div>
+          <div class="tabla-contenedor">
+            <table class="tabla-productos card-table">
+              <thead>
+                <tr>
+                  <th>Código</th><th>Tipo</th><th>Descripción</th><th>Unidad</th><th>Moneda</th><th>V. sin IGV</th><th>P. con IGV</th><th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tablaProductos"><tr><td colspan="8" class="empty">Cargando...</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div id="bottomMount"></div>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/app-shell.js"></script>
+  <script src="js/pwa.js"></script>
+  <script src="js/productos.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+FRANCO SYSTEMS ERP - CLASSIC CLOUD v1.1.0
+==========================================
+
+OBJETIVO
+Dejar Franco Systems lo más fiel posible a la versión clásica que ya usabas,
+pero conservando el motor Cloud: Supabase + login real + API segura + PWA.
+
+IMPORTANTE PARA TU INSTALACIÓN ACTUAL
+- La migración MIGRAR_A_CLASSIC_CLOUD.sql YA fue ejecutada correctamente.
+- NO vuelvas a ejecutar SQL para aplicar este parche v1.1.0.
+- NO crees otro proyecto de Supabase.
+- NO borres clientes, productos, cotizaciones ni usuarios.
+- NO reemplaces ni compartas tu archivo .env.
+- Este parche NO contiene .env.
+
+QUÉ RESTAURA v1.1.0
+- Módulo CUENTAS separado, como en la versión clásica.
+- Bancos y billeteras (BCP, Interbank, BBVA, Scotiabank, BanBif, Yape, Plin y otros).
+- Logo por cuenta y opción Mostrar en PDF.
+- Configuración clásica de empresa, logo, responsable, cargo y mensaje final.
+- Clientes con detección DNI/RUC y consulta automática al salir del campo.
+- Productos/servicios con moneda, tipo de precio, valor sin IGV, precio con IGV y observación.
+- Nueva Cotización con comportamiento clásico y correlativo visible desde la nube.
+- Cliente nuevo guardado automáticamente al guardar una cotización.
+- Historial con Todas / Activas / Anuladas, Ver, Editar, Anular y Reactivar.
+- Vista A4 clásica de la cotización.
+- Sello rojo COTIZACIÓN ANULADA.
+- Medios de pago en tarjetas dentro del documento.
+- Imprimir / Guardar PDF desde la vista clásica.
+
+PASOS
+1) Detén npm start con Ctrl + C.
+   Si Windows pregunta "¿Desea terminar el trabajo por lotes (S/N)?", escribe S y Enter.
+
+2) Descomprime FRANCO_SYSTEMS_PATCH_CLASSIC_CLOUD_v1.1.0.zip.
+
+3) Copia TODO lo que está dentro de la carpeta del parche y pégalo dentro de:
+   franco-systems-erp-v2-cloud
+
+4) Cuando Windows pregunte, selecciona:
+   REEMPLAZAR LOS ARCHIVOS EN EL DESTINO.
+
+5) No toques .env.
+
+6) No hace falta npm install. Ejecuta:
+   npm start
+
+7) Debe aparecer:
+   franco-systems-erp@1.1.0
+   FRANCO SYSTEMS ERP CLASSIC CLOUD
+   Supabase: CONFIGURADO
+
+8) Abre http://localhost:3000 y usa Ctrl + Shift + R dos veces.
+
+9) Comprueba primero que en el menú aparezca:
+   Configuración
+   Cuentas
+   Usuarios
+
+10) Después prueba, en este orden:
+    Configuración > Cuentas > Clientes > Productos > Nueva Cotización >
+    Historial > Ver cotización > Anular/Reactivar > Imprimir/Guardar PDF.
+
+Cuando estas pruebas queden bien, recién continuamos con GitHub + Render.
