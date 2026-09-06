@@ -4,3 +4,4 @@ backend/.env
 *.log
 .DS_Store
 .vscode/
+.env.production.backup
