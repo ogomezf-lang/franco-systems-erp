@@ -1,4 +1,4 @@
-const CACHE = "franco-systems-classic-cloud-v110";
+﻿const CACHE = "franco-systems-classic-cloud-v110";
 const SHELL = [
   "/",
   "/index.html",
@@ -27,8 +27,8 @@ const SHELL = [
   "/js/medios-pago-doc.js",
   "/js/usuarios.js",
   "/js/ver-cotizacion.js",
-  "/img/icon-192.png",
-  "/img/icon-512.png",
+  "/img/icon-192-v2.png",
+  "/img/icon-512-v2.png",
   "/manifest.json"
 ];
 
@@ -76,3 +76,4 @@ self.addEventListener("fetch", event => {
     }))
   );
 });
+

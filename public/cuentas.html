@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -7,8 +7,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>Cuentas | Franco Systems</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="img/icon-192.png">
-  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="icon" href="img/icon-192-v2.png">
+  <link rel="apple-touch-icon" href="img/icon-192-v2.png">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body class="pagina-app" data-page="accounts">
@@ -28,7 +28,7 @@
         <div class="panel-cabecera">
           <div>
             <h2 id="tituloFormulario">Nueva Cuenta</h2>
-            <p>Configura los datos exactamente como aparecerán en el documento.</p>
+            <p>Configura los datos exactamente como aparecerÃ¡n en el documento.</p>
           </div>
         </div>
 
@@ -55,23 +55,23 @@
             <label for="monedaCuenta">Moneda</label>
             <select id="monedaCuenta" class="select">
               <option value="SOLES">SOLES</option>
-              <option value="DOLARES">DÓLARES</option>
+              <option value="DOLARES">DÃ“LARES</option>
             </select>
           </div>
 
           <div class="cuenta-campo" id="grupoNumeroCuenta">
-            <label for="numeroCuenta">N.º Cuenta</label>
-            <input id="numeroCuenta" class="input" placeholder="Número de cuenta">
+            <label for="numeroCuenta">N.Âº Cuenta</label>
+            <input id="numeroCuenta" class="input" placeholder="NÃºmero de cuenta">
           </div>
 
           <div class="cuenta-campo" id="grupoCCI">
             <label for="cciCuenta">CCI</label>
-            <input id="cciCuenta" class="input" placeholder="Código interbancario">
+            <input id="cciCuenta" class="input" placeholder="CÃ³digo interbancario">
           </div>
 
           <div class="cuenta-campo" id="grupoCelular" style="display:none">
-            <label for="celularCuenta">Número / Celular</label>
-            <input id="celularCuenta" class="input" placeholder="Número de Yape / Plin">
+            <label for="celularCuenta">NÃºmero / Celular</label>
+            <input id="celularCuenta" class="input" placeholder="NÃºmero de Yape / Plin">
           </div>
 
           <div class="cuenta-campo cuenta-campo-ancho">
@@ -92,7 +92,7 @@
           </div>
 
           <div class="cuenta-campo cuenta-campo-ancho">
-            <label class="check-row"><input id="mostrarPdf" type="checkbox" checked> Mostrar esta cuenta en la cotización / PDF</label>
+            <label class="check-row"><input id="mostrarPdf" type="checkbox" checked> Mostrar esta cuenta en la cotizaciÃ³n / PDF</label>
           </div>
 
           <div class="cuentas-form-acciones cuenta-campo-ancho">
@@ -109,7 +109,7 @@
             <p><span id="contadorCuentas">0</span> medio(s) de pago configurado(s).</p>
           </div>
         </div>
-        <div id="sinCuentas" class="empty">Todavía no hay cuentas registradas.</div>
+        <div id="sinCuentas" class="empty">TodavÃ­a no hay cuentas registradas.</div>
         <div id="listaCuentas" class="cuentas-grid"></div>
       </section>
     </main>
@@ -122,3 +122,4 @@
 <script src="js/cuentas.js"></script>
 </body>
 </html>
+

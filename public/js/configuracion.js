@@ -1,4 +1,4 @@
-let logoBase64 = "";
+﻿let logoBase64 = "";
 let configSnapshot = null;
 let esAdmin = false;
 const $ = id => document.getElementById(id);
@@ -46,8 +46,8 @@ function cambiarLogo(event){
 async function guardarConfiguracion(){
   if(!esAdmin)return;
   const razon=$("razonSocial").value.trim(); const ruc=$("rucEmpresa").value.replace(/\D/g,"");
-  if(!razon){alert("Ingrese la razón social de la empresa.");$("razonSocial").focus();return;}
-  if(ruc && ruc.length!==11){alert("El RUC debe tener 11 dígitos.");$("rucEmpresa").focus();return;}
+  if(!razon){alert("Ingrese la razÃ³n social de la empresa.");$("razonSocial").focus();return;}
+  if(ruc && ruc.length!==11){alert("El RUC debe tener 11 dÃ­gitos.");$("rucEmpresa").focus();return;}
   const old=configSnapshot?.settings||{};
   const payload={
     name:razon,ruc,phone:$("telefonoEmpresa").value.trim(),address:$("direccionEmpresa").value.trim(),location:$("ubicacionEmpresa").value.trim(),email:$("correoEmpresa").value.trim(),
@@ -55,6 +55,7 @@ async function guardarConfiguracion(){
     payment_methods:Array.isArray(old.payment_methods)?old.payment_methods:[],bank_bcp:old.bank_bcp||"",bank_bbva:old.bank_bbva||"",bank_interbank:old.bank_interbank||"",bank_scotiabank:old.bank_scotiabank||"",yape:old.yape||"",plin:old.plin||""
   };
   const btn=$("btnGuardarConfiguracion");btn.disabled=true;btn.textContent="Guardando...";
-  try{await FrancoAPI.apiFetch("/api/settings",{method:"PUT",body:JSON.stringify(payload)});alert("Configuración guardada correctamente.");await cargarConfiguracion();document.getElementById("empresaActual").textContent=razon;}
-  catch(e){alert(e.message);} finally{btn.disabled=false;btn.textContent="Guardar Configuración";}
+  try{await FrancoAPI.apiFetch("/api/settings",{method:"PUT",body:JSON.stringify(payload)});alert("ConfiguraciÃ³n guardada correctamente.");await cargarConfiguracion();document.getElementById("empresaActual").textContent=razon;}
+  catch(e){alert(e.message);} finally{btn.disabled=false;btn.textContent="Guardar ConfiguraciÃ³n";}
 }
+

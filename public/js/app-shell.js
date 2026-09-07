@@ -1,28 +1,28 @@
-// FRANCO SYSTEMS CLASSIC CLOUD - shell visual v1.2.0
+﻿// FRANCO SYSTEMS CLASSIC CLOUD - shell visual v1.2.0
 const FrancoShell = (() => {
   const page = document.body.dataset.page || "";
 
   const pageInfo = {
     dashboard: ["Dashboard", "Resumen general del sistema"],
-    quote_new: ["Nueva Cotización", "Crear un nuevo documento"],
+    quote_new: ["Nueva CotizaciÃ³n", "Crear un nuevo documento"],
     quotes: ["Cotizaciones", "Historial de cotizaciones"],
-    clients: ["Clientes", "Gestión de clientes"],
-    products: ["Productos", "Catálogo de productos y servicios"],
-    settings: ["Configuración", "Empresa y preferencias del sistema"],
+    clients: ["Clientes", "GestiÃ³n de clientes"],
+    products: ["Productos", "CatÃ¡logo de productos y servicios"],
+    settings: ["ConfiguraciÃ³n", "Empresa y preferencias del sistema"],
     accounts: ["Cuentas", "Medios de pago"],
     users: ["Usuarios", "Accesos y permisos"],
-    quote_view: ["Detalle de Cotización", "Vista del documento"]
+    quote_view: ["Detalle de CotizaciÃ³n", "Vista del documento"]
   };
 
   const nav = [
-    ["dashboard", "dashboard.html", "⌂", "Inicio", "PRINCIPAL"],
-    ["quote_new", "nueva-cotizacion.html", "＋", "Nueva Cotización", "VENTAS"],
-    ["quotes", "cotizaciones.html", "▤", "Cotizaciones", "VENTAS"],
-    ["clients", "clientes.html", "♙", "Clientes", "GESTIÓN"],
-    ["products", "productos.html", "□", "Productos", "GESTIÓN"],
-    ["settings", "configuracion.html", "⚙", "Configuración", "SISTEMA"],
-    ["accounts", "cuentas.html", "▣", "Cuentas", "SISTEMA"],
-    ["users", "usuarios.html", "♜", "Usuarios", "SISTEMA", "admin"]
+    ["dashboard", "dashboard.html", "âŒ‚", "Inicio", "PRINCIPAL"],
+    ["quote_new", "nueva-cotizacion.html", "ï¼‹", "Nueva CotizaciÃ³n", "VENTAS"],
+    ["quotes", "cotizaciones.html", "â–¤", "Cotizaciones", "VENTAS"],
+    ["clients", "clientes.html", "â™™", "Clientes", "GESTIÃ“N"],
+    ["products", "productos.html", "â–¡", "Productos", "GESTIÃ“N"],
+    ["settings", "configuracion.html", "âš™", "ConfiguraciÃ³n", "SISTEMA"],
+    ["accounts", "cuentas.html", "â–£", "Cuentas", "SISTEMA"],
+    ["users", "usuarios.html", "â™œ", "Usuarios", "SISTEMA", "admin"]
   ];
 
   function sidebarHtml() {
@@ -55,7 +55,7 @@ const FrancoShell = (() => {
     return `
       <aside class="erp-sidebar">
         <div class="sidebar-marca">
-          <img src="img/icon-192.png"
+          <img src="img/icon-192-v2.png"
                class="sidebar-logo"
                alt="Franco Systems">
 
@@ -89,7 +89,7 @@ const FrancoShell = (() => {
         <div style="display:flex;align-items:center">
           <button class="menu-mobile"
                   id="menuMobile"
-                  type="button">☰</button>
+                  type="button">â˜°</button>
 
           <div class="topbar-pagina">
             <h2>${title}</h2>
@@ -140,28 +140,28 @@ const FrancoShell = (() => {
       <nav class="bottom-nav">
 
         <a href="dashboard.html" class="${a("dashboard")}">
-          <span class="nav-icon">⌂</span>
+          <span class="nav-icon">âŒ‚</span>
           <span>Inicio</span>
         </a>
 
         <a href="nueva-cotizacion.html" class="${a("quote_new")}">
-          <span class="nav-icon">＋</span>
+          <span class="nav-icon">ï¼‹</span>
           <span>Cotizar</span>
         </a>
 
         <a href="cotizaciones.html" class="${a("quotes")}">
-          <span class="nav-icon">▤</span>
+          <span class="nav-icon">â–¤</span>
           <span>Docs</span>
         </a>
 
         <a href="clientes.html" class="${a("clients")}">
-          <span class="nav-icon">♙</span>
+          <span class="nav-icon">â™™</span>
           <span>Clientes</span>
         </a>
 
         <button type="button" id="bottomMore">
-          <span class="nav-icon">☰</span>
-          <span>Más</span>
+          <span class="nav-icon">â˜°</span>
+          <span>MÃ¡s</span>
         </button>
 
       </nav>
@@ -213,7 +213,7 @@ const FrancoShell = (() => {
     document
       .getElementById("btnCerrarSesion")
       ?.addEventListener("click", () => {
-        if (confirm("¿Desea cerrar la sesión?")) {
+        if (confirm("Â¿Desea cerrar la sesiÃ³n?")) {
           FrancoAPI.logout();
         }
       });
@@ -225,13 +225,13 @@ const FrancoShell = (() => {
       const c = me.company || {};
 
       const role = String(u.role || "OPERADOR").toUpperCase();
-// SUPERADMIN usa únicamente su panel de administración
+// SUPERADMIN usa Ãºnicamente su panel de administraciÃ³n
 if (role === "SUPERADMIN") {
   window.location.replace("superadmin.html");
   return false;
 }
 
-      // Nombre que aparecerá arriba
+      // Nombre que aparecerÃ¡ arriba
       const nombreVisual =
         role === "SUPERADMIN"
           ? "SUPERADMIN"

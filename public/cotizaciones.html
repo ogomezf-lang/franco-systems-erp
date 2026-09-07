@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -7,8 +7,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>Cotizaciones | Franco Systems</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="img/icon-192.png">
-  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="icon" href="img/icon-192-v2.png">
+  <link rel="apple-touch-icon" href="img/icon-192-v2.png">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body class="pagina-app" data-page="quotes">
@@ -26,11 +26,11 @@
 
       <section class="panel historial-panel">
         <div class="panel-cabecera historial-cabecera">
-          <div><h2>Historial de Cotizaciones</h2><p>Busca por número, cliente o documento.</p></div>
-          <a class="btn btn-primary" href="nueva-cotizacion.html">+ Nueva Cotización</a>
+          <div><h2>Historial de Cotizaciones</h2><p>Busca por nÃºmero, cliente o documento.</p></div>
+          <a class="btn btn-primary" href="nueva-cotizacion.html">+ Nueva CotizaciÃ³n</a>
         </div>
         <div class="historial-controles">
-          <input id="buscarCotizacion" class="input" placeholder="Buscar cotización...">
+          <input id="buscarCotizacion" class="input" placeholder="Buscar cotizaciÃ³n...">
           <div class="historial-filtros">
             <button type="button" class="filtro-cotizacion activo" data-filtro="TODAS">Todas</button>
             <button type="button" class="filtro-cotizacion" data-filtro="ACTIVA">Activas</button>
@@ -39,7 +39,7 @@
         </div>
         <div class="tabla-contenedor">
           <table class="tabla-cotizaciones card-table">
-            <thead><tr><th>N.º</th><th>Cliente</th><th>Fecha</th><th>Total</th><th>Estado</th><th>Acciones</th></tr></thead>
+            <thead><tr><th>N.Âº</th><th>Cliente</th><th>Fecha</th><th>Total</th><th>Estado</th><th>Acciones</th></tr></thead>
             <tbody id="tablaCotizaciones"><tr><td colspan="6" class="empty">Cargando...</td></tr></tbody>
           </table>
         </div>
@@ -54,3 +54,4 @@
 <script src="js/cotizaciones.js"></script>
 </body>
 </html>
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#071426">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Nueva Cotización | Franco Systems</title>
+  <title>Nueva CotizaciÃ³n | Franco Systems</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="img/icon-192.png">
-  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="icon" href="img/icon-192-v2.png">
+  <link rel="apple-touch-icon" href="img/icon-192-v2.png">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body class="pagina-app" data-page="quote_new">
@@ -25,28 +25,28 @@
 
       <section class="dashboard-encabezado">
         <span class="dashboard-etiqueta">VENTAS</span>
-        <h1 id="pageTitle">Nueva Cotización</h1>
+        <h1 id="pageTitle">Nueva CotizaciÃ³n</h1>
         <p>Registra los datos del cliente y los productos o servicios.</p>
       </section>
 
       <form id="quoteForm" autocomplete="off">
-        <!-- DATOS GENERALES: MISMA ESTRUCTURA CLÁSICA -->
+        <!-- DATOS GENERALES: MISMA ESTRUCTURA CLÃSICA -->
         <section class="cotizacion-panel">
           <div class="panel-cabecera">
             <div>
               <h2>Datos generales</h2>
-              <p>Información principal del documento.</p>
+              <p>InformaciÃ³n principal del documento.</p>
             </div>
           </div>
 
           <div class="cotizacion-grid">
             <div class="cotizacion-campo">
-              <label for="numeroCotizacion">N.º Cotización</label>
+              <label for="numeroCotizacion">N.Âº CotizaciÃ³n</label>
               <input type="text" id="numeroCotizacion" readonly>
             </div>
 
             <div class="cotizacion-campo">
-              <label for="fechaEmision">Fecha de emisión</label>
+              <label for="fechaEmision">Fecha de emisiÃ³n</label>
               <input type="date" id="fechaEmision" required>
             </div>
 
@@ -60,20 +60,20 @@
 
             <div class="cotizacion-campo">
               <label for="clienteCot">Cliente</label>
-              <input type="text" id="clienteCot" placeholder="Nombre o razón social" list="listaClientes" required>
+              <input type="text" id="clienteCot" placeholder="Nombre o razÃ³n social" list="listaClientes" required>
               <datalist id="listaClientes"></datalist>
             </div>
 
             <div class="cotizacion-campo cotizacion-doble">
-              <label for="direccionCot">Dirección</label>
-              <input type="text" id="direccionCot" placeholder="Dirección del cliente">
+              <label for="direccionCot">DirecciÃ³n</label>
+              <input type="text" id="direccionCot" placeholder="DirecciÃ³n del cliente">
             </div>
 
             <div class="cotizacion-campo">
               <label for="monedaCot">Moneda</label>
               <select id="monedaCot">
                 <option value="SOLES">SOLES</option>
-                <option value="DOLARES">DÓLARES</option>
+                <option value="DOLARES">DÃ“LARES</option>
               </select>
             </div>
 
@@ -100,8 +100,8 @@
             </div>
 
             <div class="cotizacion-campo cotizacion-doble">
-              <label for="condicionesCot">Condiciones de cotización</label>
-              <textarea id="condicionesCot" rows="3" placeholder="Ej. Pago al contado, entrega en 3 días..."></textarea>
+              <label for="condicionesCot">Condiciones de cotizaciÃ³n</label>
+              <textarea id="condicionesCot" rows="3" placeholder="Ej. Pago al contado, entrega en 3 dÃ­as..."></textarea>
             </div>
           </div>
         </section>
@@ -110,7 +110,7 @@
         <section class="cotizacion-panel">
           <div class="panel-cabecera">
             <div>
-              <h2>Detalle de la Cotización</h2>
+              <h2>Detalle de la CotizaciÃ³n</h2>
               <p>Agrega productos o servicios.</p>
             </div>
           </div>
@@ -121,14 +121,14 @@
             <table class="tabla-cotizacion">
               <thead>
                 <tr>
-                  <th>N°</th>
+                  <th>NÂ°</th>
                   <th>Unidad</th>
-                  <th>Código</th>
-                  <th>Descripción</th>
+                  <th>CÃ³digo</th>
+                  <th>DescripciÃ³n</th>
                   <th>Cant.</th>
                   <th id="cabeceraPrecio">Valor Unit.</th>
                   <th>Total</th>
-                  <th>Acción</th>
+                  <th>AcciÃ³n</th>
                 </tr>
               </thead>
               <tbody id="detalleCotizacion"></tbody>
@@ -136,7 +136,7 @@
           </div>
 
           <div class="agregar-item-area">
-            <button type="button" id="btnAgregarItem" class="btn-agregar-item">+ Agregar ítem</button>
+            <button type="button" id="btnAgregarItem" class="btn-agregar-item">+ Agregar Ã­tem</button>
           </div>
 
           <div class="cotizacion-resumen-area">
@@ -171,7 +171,7 @@
 
           <div class="acciones-cotizacion">
             <button type="button" id="btnLimpiarCotizacion" class="btn-cotizacion-secundario">Limpiar</button>
-            <button type="submit" id="btnGuardarCotizacion" class="btn-cotizacion-guardar">Guardar Cotización</button>
+            <button type="submit" id="btnGuardarCotizacion" class="btn-cotizacion-guardar">Guardar CotizaciÃ³n</button>
           </div>
         </section>
       </form>
@@ -185,3 +185,4 @@
 <script src="js/cotizacion.js"></script>
 </body>
 </html>
+

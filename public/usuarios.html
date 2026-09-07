@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -8,8 +8,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Usuarios | Franco Systems</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="img/icon-192.png">
-  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="icon" href="img/icon-192-v2.png">
+  <link rel="apple-touch-icon" href="img/icon-192-v2.png">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body class="pagina-app" data-page="users">
@@ -22,13 +22,13 @@
         <section class="page-heading">
           <span class="kicker">SISTEMA</span>
           <h1 id="pageTitle">Usuarios y permisos</h1>
-          <p>Crea accesos para trabajar desde diferentes dispositivos sin compartir una sola contraseña.</p>
+          <p>Crea accesos para trabajar desde diferentes dispositivos sin compartir una sola contraseÃ±a.</p>
         </section>
         
 <section class="panel">
   <div class="panel-header">
     <div><h2>Usuarios del sistema</h2><p>ADMIN puede configurar el sistema; OPERADOR puede trabajar con clientes, productos y cotizaciones.</p></div>
-    <button class="btn btn-primary" id="btnNewUser" type="button">＋ Nuevo usuario</button>
+    <button class="btn btn-primary" id="btnNewUser" type="button">ï¼‹ Nuevo usuario</button>
   </div>
   <div class="table-wrap">
     <table class="table card-table">
@@ -39,12 +39,12 @@
 </section>
 <div class="modal-backdrop" id="userModal">
   <div class="modal">
-    <div class="modal-header"><div><span class="kicker">ACCESO</span><h3>Nuevo usuario</h3></div><button class="modal-close" id="userModalClose" type="button">✕</button></div>
+    <div class="modal-header"><div><span class="kicker">ACCESO</span><h3>Nuevo usuario</h3></div><button class="modal-close" id="userModalClose" type="button">âœ•</button></div>
     <form id="userForm">
       <div class="form-grid">
         <div class="form-group full"><label>Nombre</label><input class="input" id="newUserName" required></div>
         <div class="form-group"><label>Correo</label><input class="input" id="newUserEmail" type="email" required></div>
-        <div class="form-group"><label>Contraseña inicial</label><input class="input" id="newUserPassword" type="password" minlength="6" required></div>
+        <div class="form-group"><label>ContraseÃ±a inicial</label><input class="input" id="newUserPassword" type="password" minlength="6" required></div>
         <div class="form-group"><label>Rol</label><select class="select" id="newUserRole"><option value="OPERADOR">OPERADOR</option><option value="ADMIN">ADMIN</option></select></div>
       </div>
       <div class="quote-actions"><button class="btn btn-secondary" id="btnCancelUser" type="button">Cancelar</button><button class="btn btn-primary" type="submit">Crear usuario</button></div>
@@ -62,3 +62,4 @@
   <script src="js/usuarios.js"></script>
 </body>
 </html>
+
