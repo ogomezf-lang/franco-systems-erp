@@ -722,31 +722,463 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
 
-  // =======================================================
-  // ADMINISTRAR EMPRESA
-  // =======================================================
+ // =======================================================
+// ADMINISTRAR EMPRESA
+// =======================================================
 
-  window.verEmpresa = function (id) {
-    const company =
-      empresasActuales.find(
-        item => item.id === id
-      );
+const modalAdministrar =
+  $("modalAdministrarEmpresa");
 
-    if (!company) {
-      alert("Empresa no encontrada.");
+let empresaEditando = null;
+
+
+function cerrarAdministrarEmpresa() {
+  modalAdministrar?.classList.add("hidden");
+
+  empresaEditando = null;
+
+  const box =
+    $("mensajeAdministrarEmpresa");
+
+  if (box) {
+    box.textContent = "";
+    box.classList.add("hidden");
+  }
+}
+
+
+$("btnCerrarAdministrar")?.addEventListener(
+  "click",
+  cerrarAdministrarEmpresa
+);
+
+$("cerrarModalAdministrar")?.addEventListener(
+  "click",
+  cerrarAdministrarEmpresa
+);
+
+$("btnCancelarAdministrar")?.addEventListener(
+  "click",
+  cerrarAdministrarEmpresa
+);
+
+
+// -------------------------------------------------------
+// ABRIR EMPRESA
+// -------------------------------------------------------
+
+window.verEmpresa = function (id) {
+
+  const company =
+    empresasActuales.find(
+      item => item.id === id
+    );
+
+  if (!company) {
+    alert("Empresa no encontrada.");
+    return;
+  }
+
+  empresaEditando = company;
+
+  $("editEmpresaId").value =
+    company.id;
+
+  $("editEmpresaNombre").value =
+    company.name || "";
+
+  $("editEmpresaRuc").value =
+    company.ruc || "";
+
+  $("editEmpresaPlan").value =
+    company.plan || "PRUEBA";
+
+  $("editEmpresaVencimiento").value =
+    company.license_expires_at
+      ? String(
+          company.license_expires_at
+        ).slice(0, 10)
+      : "";
+
+  $("editEmpresaMaxUsers").value =
+    Number(
+      company.max_users || 1
+    );
+
+  $("editEmpresaEstado").value =
+    company.status || "ACTIVA";
+
+
+  $("editAdminNombre").value =
+    company.admin?.full_name || "";
+
+  $("editAdminEmail").value =
+    company.admin?.email || "";
+
+
+  $("tituloAdministrarEmpresa").textContent =
+    company.name || "Administrar empresa";
+
+
+  actualizarEstadoModal();
+  actualizarPlanEdicion();
+
+
+  modalAdministrar?.classList.remove(
+    "hidden"
+  );
+};
+
+
+// -------------------------------------------------------
+// PLAN
+// -------------------------------------------------------
+
+$("editEmpresaPlan")?.addEventListener(
+  "change",
+  actualizarPlanEdicion
+);
+
+function actualizarPlanEdicion() {
+
+  const plan =
+    $("editEmpresaPlan")?.value;
+
+  const vencimiento =
+    $("editEmpresaVencimiento");
+
+  if (!vencimiento) return;
+
+
+  if (plan === "PERMANENTE") {
+
+    vencimiento.value = "";
+    vencimiento.disabled = true;
+
+  } else {
+
+    vencimiento.disabled = false;
+
+  }
+}
+
+
+// -------------------------------------------------------
+// + 30 DÍAS
+// -------------------------------------------------------
+
+$("btnRenovar30")?.addEventListener(
+  "click",
+  () => renovarDias(30)
+);
+
+
+// -------------------------------------------------------
+// + 1 AÑO
+// -------------------------------------------------------
+
+$("btnRenovar365")?.addEventListener(
+  "click",
+  () => renovarDias(365)
+);
+
+
+function renovarDias(dias) {
+
+  const plan =
+    $("editEmpresaPlan").value;
+
+  if (plan === "PERMANENTE") {
+
+    alert(
+      "El plan PERMANENTE no necesita fecha de vencimiento."
+    );
+
+    return;
+  }
+
+
+  const input =
+    $("editEmpresaVencimiento");
+
+
+  const hoy =
+    new Date();
+
+  hoy.setHours(0, 0, 0, 0);
+
+
+  let base =
+    input.value
+      ? new Date(
+          `${input.value}T00:00:00`
+        )
+      : new Date(hoy);
+
+
+  // Si la licencia ya venció,
+  // renovamos desde hoy.
+  if (base < hoy) {
+    base = new Date(hoy);
+  }
+
+
+  base.setDate(
+    base.getDate() + dias
+  );
+
+
+  input.value =
+    base
+      .toISOString()
+      .slice(0, 10);
+}
+
+
+// -------------------------------------------------------
+// SUSPENDER / REACTIVAR
+// -------------------------------------------------------
+
+$("btnSuspenderEmpresa")?.addEventListener(
+  "click",
+  () => {
+
+    const estado =
+      $("editEmpresaEstado").value;
+
+
+    if (estado === "ACTIVA") {
+
+      $("editEmpresaEstado").value =
+        "SUSPENDIDA";
+
+    } else {
+
+      $("editEmpresaEstado").value =
+        "ACTIVA";
+    }
+
+
+    actualizarEstadoModal();
+  }
+);
+
+
+$("editEmpresaEstado")?.addEventListener(
+  "change",
+  actualizarEstadoModal
+);
+
+
+function actualizarEstadoModal() {
+
+  const button =
+    $("btnSuspenderEmpresa");
+
+  if (!button) return;
+
+
+  const estado =
+    $("editEmpresaEstado")?.value;
+
+
+  if (estado === "SUSPENDIDA") {
+
+    button.textContent =
+      "Reactivar empresa";
+
+    button.classList.remove(
+      "btn-danger"
+    );
+
+    button.classList.add(
+      "btn-soft"
+    );
+
+  } else {
+
+    button.textContent =
+      "Suspender empresa";
+
+    button.classList.remove(
+      "btn-soft"
+    );
+
+    button.classList.add(
+      "btn-danger"
+    );
+  }
+}
+
+
+// -------------------------------------------------------
+// GUARDAR CAMBIOS
+// -------------------------------------------------------
+
+$("formAdministrarEmpresa")?.addEventListener(
+  "submit",
+  async (event) => {
+
+    event.preventDefault();
+
+
+    if (!empresaEditando) {
       return;
     }
 
-    alert(
-      "Empresa: " +
-      company.name +
-      "\n\n" +
-      "En el siguiente paso habilitaremos:\n" +
-      "• Editar empresa\n" +
-      "• Renovar licencia\n" +
-      "• Suspender / activar\n" +
-      "• Cambiar límite de usuarios"
-    );
-  };
 
+    const id =
+      $("editEmpresaId").value;
+
+    const name =
+      $("editEmpresaNombre")
+        .value
+        .trim();
+
+    const ruc =
+      $("editEmpresaRuc")
+        .value
+        .trim();
+
+    const plan =
+      $("editEmpresaPlan").value;
+
+    const status =
+      $("editEmpresaEstado").value;
+
+    const maxUsers =
+      Number(
+        $("editEmpresaMaxUsers").value
+      );
+
+
+    if (!name) {
+      mostrarMensajeAdministrar(
+        "Ingresa la razón social."
+      );
+
+      return;
+    }
+
+
+    if (
+      ruc &&
+      !/^\d{11}$/.test(ruc)
+    ) {
+
+      mostrarMensajeAdministrar(
+        "El RUC debe tener 11 dígitos."
+      );
+
+      return;
+    }
+
+
+    if (
+      !Number.isInteger(maxUsers) ||
+      maxUsers < 1
+    ) {
+
+      mostrarMensajeAdministrar(
+        "El límite de usuarios no es válido."
+      );
+
+      return;
+    }
+
+
+    const payload = {
+
+      name,
+
+      ruc,
+
+      plan,
+
+      status,
+
+      max_users:
+        maxUsers,
+
+      license_expires_at:
+        plan === "PERMANENTE"
+          ? null
+          : $("editEmpresaVencimiento")
+              .value
+    };
+
+
+    const button =
+      $("btnGuardarCambiosEmpresa");
+
+
+    try {
+
+      button.disabled = true;
+
+      button.textContent =
+        "Guardando...";
+
+
+      await FrancoAPI.apiFetch(
+        `/api/superadmin/companies/${id}`,
+        {
+          method: "PATCH",
+
+          body:
+            JSON.stringify(payload)
+        }
+      );
+
+
+      cerrarAdministrarEmpresa();
+
+
+      await cargarPanel();
+
+
+      alert(
+        "Cambios guardados correctamente."
+      );
+
+
+    } catch (error) {
+
+      mostrarMensajeAdministrar(
+        error.message ||
+        "No se pudieron guardar los cambios."
+      );
+
+
+    } finally {
+
+      button.disabled = false;
+
+      button.textContent =
+        "Guardar cambios";
+    }
+  }
+);
+
+
+// -------------------------------------------------------
+// MENSAJE MODAL
+// -------------------------------------------------------
+
+function mostrarMensajeAdministrar(
+  message
+) {
+
+  const box =
+    $("mensajeAdministrarEmpresa");
+
+  if (!box) return;
+
+  box.textContent =
+    message;
+
+  box.classList.remove(
+    "hidden"
+  );
+}
 });

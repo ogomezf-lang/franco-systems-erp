@@ -770,6 +770,280 @@
   </div>
 
 </div>
+<!-- =========================================
+     MODAL ADMINISTRAR EMPRESA
+     ========================================= -->
+<div id="modalAdministrarEmpresa" class="fs-modal hidden">
+
+  <div
+    class="fs-modal-backdrop"
+    id="cerrarModalAdministrar"
+  ></div>
+
+  <div class="fs-modal-card">
+
+    <div class="fs-modal-header">
+
+      <div>
+        <span class="kicker">ADMINISTRACIÓN</span>
+
+        <h2 id="tituloAdministrarEmpresa">
+          Administrar empresa
+        </h2>
+
+        <p>
+          Modifica la licencia y configuración general
+          de esta empresa.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="fs-modal-close"
+        id="btnCerrarAdministrar"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <form id="formAdministrarEmpresa">
+
+      <!-- ID interno -->
+      <input
+        type="hidden"
+        id="editEmpresaId"
+      >
+
+
+      <!-- DATOS DE EMPRESA -->
+      <div class="form-section-title">
+        Datos de la empresa
+      </div>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+
+          <label>Razón social *</label>
+
+          <input
+            id="editEmpresaNombre"
+            type="text"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>RUC</label>
+
+          <input
+            id="editEmpresaRuc"
+            type="text"
+            maxlength="11"
+            placeholder="20601234567"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- LICENCIA -->
+      <div class="form-section-title">
+        Licencia
+      </div>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+
+          <label>Plan</label>
+
+          <select id="editEmpresaPlan">
+
+            <option value="PRUEBA">
+              PRUEBA
+            </option>
+
+            <option value="MENSUAL">
+              MENSUAL
+            </option>
+
+            <option value="ANUAL">
+              ANUAL
+            </option>
+
+            <option value="PERMANENTE">
+              PERMANENTE
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Fecha de vencimiento</label>
+
+          <input
+            id="editEmpresaVencimiento"
+            type="date"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Máximo de usuarios</label>
+
+          <input
+            id="editEmpresaMaxUsers"
+            type="number"
+            min="1"
+            max="1000"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Estado</label>
+
+          <select id="editEmpresaEstado">
+
+            <option value="ACTIVA">
+              ACTIVA
+            </option>
+
+            <option value="SUSPENDIDA">
+              SUSPENDIDA
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <!-- ADMIN PRINCIPAL -->
+      <div class="form-section-title">
+        Administrador principal
+      </div>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+
+          <label>Nombre</label>
+
+          <input
+            id="editAdminNombre"
+            type="text"
+            readonly
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Correo de acceso</label>
+
+          <input
+            id="editAdminEmail"
+            type="text"
+            readonly
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- ACCIONES RÁPIDAS -->
+      <div class="form-section-title">
+        Acciones rápidas
+      </div>
+
+      <div
+        style="
+          display:flex;
+          flex-wrap:wrap;
+          gap:10px;
+        "
+      >
+
+        <button
+          type="button"
+          class="btn btn-soft"
+          id="btnRenovar30"
+        >
+          + 30 días
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-soft"
+          id="btnRenovar365"
+        >
+          + 1 año
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-danger"
+          id="btnSuspenderEmpresa"
+        >
+          Suspender empresa
+        </button>
+
+      </div>
+
+
+      <!-- MENSAJE -->
+      <div
+        id="mensajeAdministrarEmpresa"
+        class="alert warning hidden"
+        style="margin-top:20px;"
+      ></div>
+
+
+      <!-- BOTONES -->
+      <div class="fs-modal-footer">
+
+        <button
+          type="button"
+          class="btn btn-soft"
+          id="btnCancelarAdministrar"
+        >
+          Cancelar
+        </button>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          id="btnGuardarCambiosEmpresa"
+        >
+          Guardar cambios
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
   <script src="js/api.js"></script>
   <script src="js/pwa.js"></script>
   <script src="js/superadmin.js"></script>

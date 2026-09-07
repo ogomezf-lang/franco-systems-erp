@@ -1,6 +1,6 @@
 {
   "name": "franco-systems-erp",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Franco Systems Classic Cloud - interfaz Business ERP v1.0 con Supabase, PWA y backend seguro",
   "main": "backend/server.js",
   "scripts": {

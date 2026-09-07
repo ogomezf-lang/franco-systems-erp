@@ -225,6 +225,11 @@ const FrancoShell = (() => {
       const c = me.company || {};
 
       const role = String(u.role || "OPERADOR").toUpperCase();
+// SUPERADMIN usa únicamente su panel de administración
+if (role === "SUPERADMIN") {
+  window.location.replace("superadmin.html");
+  return false;
+}
 
       // Nombre que aparecerá arriba
       const nombreVisual =
