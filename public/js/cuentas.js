@@ -1,4 +1,4 @@
-﻿let cuentas = [];
+let cuentas = [];
 let logoBase64 = "";
 let indiceEditar = null;
 let configSnapshot = null;
@@ -144,11 +144,11 @@ function renderizarCuentas() {
     return `<article class="cuenta-card">
       <div class="cuenta-card-top">
         <div class="cuenta-card-logo">${c.logo ? `<img src="${c.logo}" alt="${escaparHTML(entidad)}">` : `<strong>${escaparHTML(entidad.slice(0,4))}</strong>`}</div>
-        <div><h3>${escaparHTML(entidad)}</h3><span>${esWallet ? "BILLETERA DIGITAL" : `CUENTA EN ${c.moneda === "DOLARES" ? "DÃ“LARES" : "SOLES"}`}</span></div>
+        <div><h3>${escaparHTML(entidad)}</h3><span>${esWallet ? "BILLETERA DIGITAL" : `CUENTA EN ${c.moneda === "DOLARES" ? "DÓLARES" : "SOLES"}`}</span></div>
         <span class="badge ${c.mostrarPdf ? "active" : "cancelled"}">${c.mostrarPdf ? "EN PDF" : "OCULTA"}</span>
       </div>
       <div class="cuenta-card-datos">
-        ${esWallet ? `<div><span>NÃšMERO</span><strong>${escaparHTML(c.celular || "-")}</strong></div>` : `<div><span>NÂ° CUENTA</span><strong>${escaparHTML(c.numeroCuenta || "-")}</strong></div><div><span>CCI</span><strong>${escaparHTML(c.cci || "-")}</strong></div>`}
+        ${esWallet ? `<div><span>NÚMERO</span><strong>${escaparHTML(c.celular || "-")}</strong></div>` : `<div><span>N° CUENTA</span><strong>${escaparHTML(c.numeroCuenta || "-")}</strong></div><div><span>CCI</span><strong>${escaparHTML(c.cci || "-")}</strong></div>`}
         <div><span>TITULAR</span><strong>${escaparHTML(c.titular || "-")}</strong></div>
       </div>
       ${esAdmin ? `<div class="cuenta-card-actions"><button class="btn btn-soft btn-sm" type="button" onclick="editarCuenta(${i})">Editar</button><button class="btn btn-danger btn-sm" type="button" onclick="eliminarCuenta(${i})">Eliminar</button></div>` : ""}
@@ -161,8 +161,8 @@ async function guardarCuenta(event) {
   if (!esAdmin) return;
   if (!$("entidadCuenta").value) return alert("SELECCIONE LA ENTIDAD.");
   if ($("entidadCuenta").value === "OTRO" && !$("nombrePersonalizado").value.trim()) return alert("INGRESE EL NOMBRE DE LA ENTIDAD.");
-  if ($("tipoCuenta").value === "BANCO" && !$("numeroCuenta").value.trim()) return alert("INGRESE EL NÃšMERO DE CUENTA.");
-  if ($("tipoCuenta").value === "BILLETERA" && !$("celularCuenta").value.trim()) return alert("INGRESE EL NÃšMERO O CELULAR.");
+  if ($("tipoCuenta").value === "BANCO" && !$("numeroCuenta").value.trim()) return alert("INGRESE EL NÚMERO DE CUENTA.");
+  if ($("tipoCuenta").value === "BILLETERA" && !$("celularCuenta").value.trim()) return alert("INGRESE EL NÚMERO O CELULAR.");
 
   const cuenta = {
     id: indiceEditar === null ? String(Date.now()) : cuentas[indiceEditar].id,
@@ -210,7 +210,7 @@ function editarCuenta(indice) {
   indiceEditar=indice;
   $("tituloFormulario").textContent="Editar Cuenta";
   $("btnGuardarCuenta").textContent="Actualizar Cuenta";
-  $("btnCancelarCuenta").textContent="Cancelar ediciÃ³n";
+  $("btnCancelarCuenta").textContent="Cancelar edición";
   $("tipoCuenta").value=c.tipo; actualizarCamposTipo();
   $("entidadCuenta").value=c.entidad; actualizarEntidad();
   $("nombrePersonalizado").value=c.nombrePersonalizado||"";
@@ -224,9 +224,8 @@ function editarCuenta(indice) {
   window.scrollTo({top:0,behavior:"smooth"});
 }
 async function eliminarCuenta(indice) {
-  const c=cuentas[indice]; if(!c || !confirm(`Â¿ELIMINAR ${obtenerNombreEntidad(c)}?`)) return;
+  const c=cuentas[indice]; if(!c || !confirm(`¿ELIMINAR ${obtenerNombreEntidad(c)}?`)) return;
   const backup=[...cuentas]; cuentas.splice(indice,1);
   try { await persistirCuentas(); renderizarCuentas(); if(indiceEditar===indice) limpiarFormulario(); }
   catch(e){ cuentas=backup; renderizarCuentas(); alert(e.message); }
 }
-

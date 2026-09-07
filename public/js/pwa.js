@@ -1,4 +1,4 @@
-﻿let francoDeferredInstallPrompt = null;
+let francoDeferredInstallPrompt = null;
 
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
@@ -25,4 +25,3 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/service-worker.js").catch(console.warn);
   });
 }
-

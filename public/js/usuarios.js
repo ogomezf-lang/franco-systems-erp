@@ -1,10 +1,10 @@
-﻿let users = [];
+let users = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
   const me = await FrancoShell.init();
   if (!me) return;
   if (me.user?.role !== "ADMIN") {
-    alert("Esta secciÃ³n es solo para administradores.");
+    alert("Esta sección es solo para administradores.");
     location.href = "dashboard.html";
     return;
   }
@@ -63,7 +63,7 @@ async function toggleRole(id) {
   const u = users.find(x => x.id === id);
   if (!u) return;
   const role = u.role === "ADMIN" ? "OPERADOR" : "ADMIN";
-  if (!confirm(`Â¿Cambiar a ${u.full_name} al rol ${role}?`)) return;
+  if (!confirm(`¿Cambiar a ${u.full_name} al rol ${role}?`)) return;
   try {
     await FrancoAPI.apiFetch(`/api/users/${id}`, { method:"PATCH", body:JSON.stringify({ role }) });
     await loadUsers();
@@ -81,10 +81,9 @@ async function toggleActive(id) {
 
 async function deleteUser(id) {
   const u = users.find(x => x.id === id);
-  if (!u || !confirm(`Â¿Eliminar el usuario ${u.full_name}?`)) return;
+  if (!u || !confirm(`¿Eliminar el usuario ${u.full_name}?`)) return;
   try {
     await FrancoAPI.apiFetch(`/api/users/${id}`, { method:"DELETE" });
     await loadUsers();
   } catch (error) { alert(error.message); }
 }
-

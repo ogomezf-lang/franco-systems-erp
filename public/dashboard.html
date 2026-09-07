@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -8,8 +8,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Dashboard | Franco Systems</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="img/icon-192-v2.png">
-  <link rel="apple-touch-icon" href="img/icon-192-v2.png">
+  <link rel="icon" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body class="pagina-app" data-page="dashboard">
@@ -17,15 +17,15 @@
     <div id="sidebarMount"></div>
     <div class="erp-principal">
       <div id="topbarMount"></div>
-      <main class="erp-content"><div id="setupAlert" class="alert warning hidden"></div><section class="page-heading"><span class="kicker">PANEL GENERAL</span><h1 id="pageTitle">Resumen</h1><p>Consulta rÃ¡pidamente el estado de tus operaciones.</p></section>
+      <main class="erp-content"><div id="setupAlert" class="alert warning hidden"></div><section class="page-heading"><span class="kicker">PANEL GENERAL</span><h1 id="pageTitle">Resumen</h1><p>Consulta rápidamente el estado de tus operaciones.</p></section>
 <section class="summary-grid">
 <article class="summary-card"><div class="summary-icon blue">S/</div><div class="summary-copy"><span>Monto del mes</span><strong id="kpiMonth">S/ 0.00</strong><small id="kpiMonthUsd">$ 0.00</small></div></article>
-<article class="summary-card green-card"><div class="summary-icon green">âœ“</div><div class="summary-copy"><span>Cotizaciones activas</span><strong id="kpiActive">0</strong><small>Documentos vigentes</small></div></article>
-<article class="summary-card red-card"><div class="summary-icon red">Ã—</div><div class="summary-copy"><span>Cotizaciones anuladas</span><strong id="kpiCancelled">0</strong><small>Documentos anulados</small></div></article>
+<article class="summary-card green-card"><div class="summary-icon green">✓</div><div class="summary-copy"><span>Cotizaciones activas</span><strong id="kpiActive">0</strong><small>Documentos vigentes</small></div></article>
+<article class="summary-card red-card"><div class="summary-icon red">×</div><div class="summary-copy"><span>Cotizaciones anuladas</span><strong id="kpiCancelled">0</strong><small>Documentos anulados</small></div></article>
 <article class="summary-card purple-card"><div class="summary-icon purple">#</div><div class="summary-copy"><span>Total cotizaciones</span><strong id="kpiQuotes">0</strong><small>Historial total</small></div></article>
 </section>
-<section class="panel"><div class="panel-header"><div><h2>Accesos rÃ¡pidos</h2><p>Ingresa directamente a las funciones principales.</p></div></div><div class="quick-grid"><a class="quick-card" href="nueva-cotizacion.html"><span class="quick-icon">ï¼‹</span><span><b>Nueva CotizaciÃ³n</b><small>Crear un nuevo documento</small></span></a><a class="quick-card" href="clientes.html"><span class="quick-icon">â™™</span><span><b>Clientes</b><small>Gestionar clientes</small></span></a><a class="quick-card" href="productos.html"><span class="quick-icon">â–¡</span><span><b>Productos</b><small>CatÃ¡logo de productos y servicios</small></span></a><a class="quick-card" href="configuracion.html"><span class="quick-icon">âš™</span><span><b>ConfiguraciÃ³n</b><small>Empresa y preferencias</small></span></a></div></section>
-<section class="panel"><div class="panel-header"><div><h2>Ãšltimas Cotizaciones</h2><p>Ãšltimos documentos registrados en el sistema.</p></div><a class="btn btn-soft btn-sm" href="cotizaciones.html">Ver todas â†’</a></div><div class="table-wrap"><table class="table card-table"><thead><tr><th>NÂ°</th><th>CLIENTE</th><th>FECHA</th><th>TOTAL</th><th>ESTADO</th><th></th></tr></thead><tbody id="latestQuotes"><tr><td colspan="6" class="empty">Cargando...</td></tr></tbody></table></div></section></main>
+<section class="panel"><div class="panel-header"><div><h2>Accesos rápidos</h2><p>Ingresa directamente a las funciones principales.</p></div></div><div class="quick-grid"><a class="quick-card" href="nueva-cotizacion.html"><span class="quick-icon">＋</span><span><b>Nueva Cotización</b><small>Crear un nuevo documento</small></span></a><a class="quick-card" href="clientes.html"><span class="quick-icon">♙</span><span><b>Clientes</b><small>Gestionar clientes</small></span></a><a class="quick-card" href="productos.html"><span class="quick-icon">□</span><span><b>Productos</b><small>Catálogo de productos y servicios</small></span></a><a class="quick-card" href="configuracion.html"><span class="quick-icon">⚙</span><span><b>Configuración</b><small>Empresa y preferencias</small></span></a></div></section>
+<section class="panel"><div class="panel-header"><div><h2>Últimas Cotizaciones</h2><p>Últimos documentos registrados en el sistema.</p></div><a class="btn btn-soft btn-sm" href="cotizaciones.html">Ver todas →</a></div><div class="table-wrap"><table class="table card-table"><thead><tr><th>N°</th><th>CLIENTE</th><th>FECHA</th><th>TOTAL</th><th>ESTADO</th><th></th></tr></thead><tbody id="latestQuotes"><tr><td colspan="6" class="empty">Cargando...</td></tr></tbody></table></div></section></main>
     </div>
     <div id="bottomMount"></div>
   </div>
@@ -35,4 +35,3 @@
   <script src="js/dashboard.js"></script>
 </body>
 </html>
-

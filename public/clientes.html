@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -8,8 +8,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Clientes | Franco Systems</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="img/icon-192-v2.png">
-  <link rel="apple-touch-icon" href="img/icon-192-v2.png">
+  <link rel="icon" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body class="pagina-app" data-page="clients">
@@ -21,7 +21,7 @@
         <div id="setupAlert" class="alert warning hidden"></div>
 
         <section class="page-heading">
-          <span class="kicker">GESTIÃ“N</span>
+          <span class="kicker">GESTIÓN</span>
           <h1 id="pageTitle">Clientes</h1>
           <p>Registra y reutiliza tus clientes en las cotizaciones.</p>
         </section>
@@ -30,38 +30,38 @@
           <div class="panel-cabecera">
             <div>
               <h2 id="tituloFormularioCliente">Nuevo Cliente</h2>
-              <p>Completa los datos principales. Al salir del campo DNI/RUC, Franco Systems intentarÃ¡ completar los datos automÃ¡ticamente.</p>
+              <p>Completa los datos principales. Al salir del campo DNI/RUC, Franco Systems intentará completar los datos automáticamente.</p>
             </div>
           </div>
 
           <form id="clientForm" class="clientes-form-grid" autocomplete="off">
             <div class="cliente-campo">
               <label for="documentoCliente">DNI / RUC</label>
-              <input id="documentoCliente" class="input" inputmode="numeric" maxlength="11" placeholder="8 u 11 dÃ­gitos" required>
+              <input id="documentoCliente" class="input" inputmode="numeric" maxlength="11" placeholder="8 u 11 dígitos" required>
             </div>
 
             <div class="cliente-campo">
               <label for="tipoCliente">Tipo</label>
-              <input id="tipoCliente" class="input" value="" placeholder="Se detecta automÃ¡ticamente" readonly>
+              <input id="tipoCliente" class="input" value="" placeholder="Se detecta automáticamente" readonly>
             </div>
 
             <div class="cliente-campo cliente-campo-ancho">
-              <label for="nombreCliente">Nombre / RazÃ³n social</label>
+              <label for="nombreCliente">Nombre / Razón social</label>
               <input id="nombreCliente" class="input" required>
             </div>
 
             <div class="cliente-campo cliente-campo-ancho">
-              <label for="direccionCliente">DirecciÃ³n</label>
+              <label for="direccionCliente">Dirección</label>
               <input id="direccionCliente" class="input">
             </div>
 
             <div class="cliente-campo">
-              <label for="telefonoCliente">TelÃ©fono</label>
+              <label for="telefonoCliente">Teléfono</label>
               <input id="telefonoCliente" class="input">
             </div>
 
             <div class="cliente-campo">
-              <label for="correoCliente">Correo electrÃ³nico</label>
+              <label for="correoCliente">Correo electrónico</label>
               <input id="correoCliente" class="input" type="email">
             </div>
 
@@ -76,7 +76,7 @@
           <div class="clientes-lista-cabecera">
             <div>
               <h2>Clientes registrados</h2>
-              <p>La informaciÃ³n estÃ¡ sincronizada con Supabase y disponible en tus dispositivos.</p>
+              <p>La información está sincronizada con Supabase y disponible en tus dispositivos.</p>
             </div>
             <div class="buscar-cliente">
               <input id="buscarCliente" class="input" placeholder="Buscar por nombre, DNI o RUC">
@@ -90,8 +90,8 @@
                   <th>Documento</th>
                   <th>Tipo</th>
                   <th>Cliente</th>
-                  <th>DirecciÃ³n</th>
-                  <th>TelÃ©fono</th>
+                  <th>Dirección</th>
+                  <th>Teléfono</th>
                   <th>Correo</th>
                   <th>Acciones</th>
                 </tr>
@@ -112,4 +112,3 @@
   <script src="js/clientes.js"></script>
 </body>
 </html>
-

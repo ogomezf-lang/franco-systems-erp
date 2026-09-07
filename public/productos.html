@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -8,8 +8,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Productos | Franco Systems</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="img/icon-192-v2.png">
-  <link rel="apple-touch-icon" href="img/icon-192-v2.png">
+  <link rel="icon" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body class="pagina-app" data-page="products">
@@ -21,7 +21,7 @@
         <div id="setupAlert" class="alert warning hidden"></div>
 
         <section class="page-heading">
-          <span class="kicker">GESTIÃ“N</span>
+          <span class="kicker">GESTIÓN</span>
           <h1 id="pageTitle">Productos</h1>
           <p>Registra productos y servicios para reutilizarlos al crear cotizaciones.</p>
         </section>
@@ -30,13 +30,13 @@
           <div class="panel-cabecera">
             <div>
               <h2 id="tituloFormularioProducto">Nuevo Producto / Servicio</h2>
-              <p>Mantiene el catÃ¡logo clÃ¡sico, ahora sincronizado con la nube.</p>
+              <p>Mantiene el catálogo clásico, ahora sincronizado con la nube.</p>
             </div>
           </div>
 
           <form id="productForm" class="productos-form-grid" autocomplete="off">
             <div class="producto-campo">
-              <label for="codigoProducto">CÃ³digo</label>
+              <label for="codigoProducto">Código</label>
               <input id="codigoProducto" class="input" placeholder="Ej. P001">
             </div>
             <div class="producto-campo">
@@ -47,7 +47,7 @@
               </select>
             </div>
             <div class="producto-campo producto-campo-ancho">
-              <label for="descripcionProducto">DescripciÃ³n</label>
+              <label for="descripcionProducto">Descripción</label>
               <input id="descripcionProducto" class="input" required>
             </div>
             <div class="producto-campo">
@@ -58,7 +58,7 @@
               <label for="monedaProducto">Moneda</label>
               <select id="monedaProducto" class="select">
                 <option value="SOLES">SOLES</option>
-                <option value="DOLARES">DÃ“LARES</option>
+                <option value="DOLARES">DÓLARES</option>
               </select>
             </div>
             <div class="producto-campo">
@@ -81,7 +81,7 @@
               <input id="precioConIgvProducto" class="input calculado" readonly>
             </div>
             <div class="producto-campo producto-campo-ancho">
-              <label for="observacionProducto">ObservaciÃ³n</label>
+              <label for="observacionProducto">Observación</label>
               <input id="observacionProducto" class="input" placeholder="Opcional">
             </div>
 
@@ -96,17 +96,17 @@
           <div class="productos-lista-cabecera">
             <div>
               <h2>Productos registrados</h2>
-              <p>CatÃ¡logo disponible en cotizaciones desde web, PC o app.</p>
+              <p>Catálogo disponible en cotizaciones desde web, PC o app.</p>
             </div>
             <div class="buscar-producto">
-              <input id="buscarProducto" class="input" placeholder="Buscar por cÃ³digo o descripciÃ³n">
+              <input id="buscarProducto" class="input" placeholder="Buscar por código o descripción">
             </div>
           </div>
           <div class="tabla-contenedor">
             <table class="tabla-productos card-table">
               <thead>
                 <tr>
-                  <th>CÃ³digo</th><th>Tipo</th><th>DescripciÃ³n</th><th>Unidad</th><th>Moneda</th><th>V. sin IGV</th><th>P. con IGV</th><th>Acciones</th>
+                  <th>Código</th><th>Tipo</th><th>Descripción</th><th>Unidad</th><th>Moneda</th><th>V. sin IGV</th><th>P. con IGV</th><th>Acciones</th>
                 </tr>
               </thead>
               <tbody id="tablaProductos"><tr><td colspan="8" class="empty">Cargando...</td></tr></tbody>
@@ -123,4 +123,3 @@
   <script src="js/productos.js"></script>
 </body>
 </html>
-

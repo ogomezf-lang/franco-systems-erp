@@ -1,9 +1,9 @@
-﻿// FRANCO SYSTEMS - LOGIN CLOUD v1.2.0
+// FRANCO SYSTEMS - LOGIN CLOUD v1.2.0
 
 document.addEventListener("DOMContentLoaded", async () => {
 
   // -------------------------------------------------------
-  // SI YA HAY SESIÃ“N, ENVIAR SEGÃšN EL ROL
+  // SI YA HAY SESIÓN, ENVIAR SEGÚN EL ROL
   // -------------------------------------------------------
 
   if (FrancoAPI.isLogged()) {
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const error =
                   new Error(
                     body.message ||
-                    "No se pudo iniciar sesiÃ³n."
+                    "No se pudo iniciar sesión."
                   );
 
                 error.data = body;
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           );
 
 
-        // Guardar sesiÃ³n
+        // Guardar sesión
         FrancoAPI.setSession(data);
 
 
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
         // -------------------------------------------------
-        // REDIRECCIÃ“N SEGÃšN ROL
+        // REDIRECCIÓN SEGÚN ROL
         // -------------------------------------------------
 
         if (role === "SUPERADMIN") {
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         ) {
 
           message.textContent =
-            "TodavÃ­a falta conectar Supabase.";
+            "Todavía falta conectar Supabase.";
 
         } else {
 

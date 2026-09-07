@@ -1,5 +1,5 @@
-﻿// =====================================================
-// FRANCO SYSTEMS Â· COTIZACIÃ“N CLÃSICA CLOUD
+// =====================================================
+// FRANCO SYSTEMS · COTIZACIÓN CLÁSICA CLOUD
 // Interfaz v1.0 + almacenamiento/API en la nube
 // =====================================================
 
@@ -52,12 +52,12 @@ function escapeAttr(valor) {
 }
 
 // -----------------------------------------------------
-// NÃšMEROS A LETRAS (mismo concepto del cotizador v1.0)
+// NÚMEROS A LETRAS (mismo concepto del cotizador v1.0)
 // -----------------------------------------------------
 function enteroEnLetras(n) {
   n = Math.floor(Math.abs(Number(n) || 0));
   if (n === 0) return "CERO";
-  const u = ["","UNO","DOS","TRES","CUATRO","CINCO","SEIS","SIETE","OCHO","NUEVE","DIEZ","ONCE","DOCE","TRECE","CATORCE","QUINCE","DIECISÃ‰IS","DIECISIETE","DIECIOCHO","DIECINUEVE","VEINTE","VEINTIUNO","VEINTIDÃ“S","VEINTITRÃ‰S","VEINTICUATRO","VEINTICINCO","VEINTISÃ‰IS","VEINTISIETE","VEINTIOCHO","VEINTINUEVE"];
+  const u = ["","UNO","DOS","TRES","CUATRO","CINCO","SEIS","SIETE","OCHO","NUEVE","DIEZ","ONCE","DOCE","TRECE","CATORCE","QUINCE","DIECISÉIS","DIECISIETE","DIECIOCHO","DIECINUEVE","VEINTE","VEINTIUNO","VEINTIDÓS","VEINTITRÉS","VEINTICUATRO","VEINTICINCO","VEINTISÉIS","VEINTISIETE","VEINTIOCHO","VEINTINUEVE"];
   const dec = ["","","VEINTE","TREINTA","CUARENTA","CINCUENTA","SESENTA","SETENTA","OCHENTA","NOVENTA"];
   const cen = ["","CIENTO","DOSCIENTOS","TRESCIENTOS","CUATROCIENTOS","QUINIENTOS","SEISCIENTOS","SETECIENTOS","OCHOCIENTOS","NOVECIENTOS"];
   const menor100 = x => x < 30 ? u[x] : `${dec[Math.floor(x / 10)]}${x % 10 ? ` Y ${u[x % 10]}` : ""}`;
@@ -72,7 +72,7 @@ function enteroEnLetras(n) {
   }
   if (n < 1000000000) {
     const millones = Math.floor(n / 1000000), resto = n % 1000000;
-    return `${millones === 1 ? "UN MILLÃ“N" : `${enteroEnLetras(millones)} MILLONES`}${resto ? ` ${enteroEnLetras(resto)}` : ""}`;
+    return `${millones === 1 ? "UN MILLÓN" : `${enteroEnLetras(millones)} MILLONES`}${resto ? ` ${enteroEnLetras(resto)}` : ""}`;
   }
   return String(n);
 }
@@ -81,7 +81,7 @@ function importeEnLetras(valor) {
   const monto = money2(valor);
   const entero = Math.floor(monto);
   const centimos = Math.round((monto - entero) * 100);
-  const moneda = monedaCot.value === "DOLARES" ? "DÃ“LARES" : "SOLES";
+  const moneda = monedaCot.value === "DOLARES" ? "DÓLARES" : "SOLES";
   return `SON ${enteroEnLetras(entero)} Y ${String(centimos).padStart(2,"0")}/100 ${moneda}`;
 }
 
@@ -144,7 +144,7 @@ async function actualizarNumeroCotizacion() {
 }
 
 // -----------------------------------------------------
-// CLIENTES CLOUD, MISMA EXPERIENCIA CLÃSICA
+// CLIENTES CLOUD, MISMA EXPERIENCIA CLÁSICA
 // -----------------------------------------------------
 async function cargarClientes() {
   const data = await FrancoAPI.apiFetch("/api/clients");
@@ -184,12 +184,12 @@ async function guardarClienteConsultado(documento, nombre, direccion) {
     if (data.client) clientes.push(data.client);
     cargarListaClientes();
   } catch (error) {
-    // Si otro dispositivo ya lo creÃ³, simplemente volvemos a cargar.
+    // Si otro dispositivo ya lo creó, simplemente volvemos a cargar.
     if (/existe/i.test(error.message || "")) {
       await cargarClientes();
       return;
     }
-    console.warn("No se pudo guardar automÃ¡ticamente el cliente consultado:", error);
+    console.warn("No se pudo guardar automáticamente el cliente consultado:", error);
   }
 }
 
@@ -198,7 +198,7 @@ async function buscarClientePorDocumento() {
   documentoClienteCot.value = documento;
 
   if (!documento) return alert("Ingrese un RUC o DNI.");
-  if (![8,11].includes(documento.length)) return alert("Ingrese un DNI de 8 dÃ­gitos o un RUC de 11 dÃ­gitos.");
+  if (![8,11].includes(documento.length)) return alert("Ingrese un DNI de 8 dígitos o un RUC de 11 dígitos.");
 
   const guardado = clientes.find(c => c.document === documento);
   if (guardado) {
@@ -279,8 +279,8 @@ function agregarFila(datos = {}) {
   fila.innerHTML = `
     <td class="numero-fila">1</td>
     <td><input type="text" class="detalle-unidad" value="${escapeAttr(datos.unit || datos.unidad || "")}" placeholder="Unidad"></td>
-    <td><input type="text" class="detalle-codigo" list="listaCodigosProductos" value="${escapeAttr(datos.code || datos.codigo || "")}" placeholder="CÃ³digo"></td>
-    <td><input type="text" class="detalle-descripcion" value="${escapeAttr(datos.description || datos.descripcion || "")}" placeholder="DescripciÃ³n"></td>
+    <td><input type="text" class="detalle-codigo" list="listaCodigosProductos" value="${escapeAttr(datos.code || datos.codigo || "")}" placeholder="Código"></td>
+    <td><input type="text" class="detalle-descripcion" value="${escapeAttr(datos.description || datos.descripcion || "")}" placeholder="Descripción"></td>
     <td><input type="number" class="detalle-cantidad" min="0" step="0.01" value="${datos.quantity ?? datos.cantidad ?? ""}" placeholder="0"></td>
     <td><input type="number" class="detalle-precio" min="0" step="0.01" value="${(datos.unit_price ?? datos.precio) !== undefined ? Number(datos.unit_price ?? datos.precio).toFixed(2) : ""}" placeholder="0.00"></td>
     <td class="detalle-total">${formatoDinero(datos.line_total || 0)}</td>
@@ -335,7 +335,7 @@ function obtenerItems() {
 }
 
 // -----------------------------------------------------
-// CÃLCULOS CLÃSICOS EXACTOS
+// CÁLCULOS CLÁSICOS EXACTOS
 // -----------------------------------------------------
 function calcularTotales() {
   let subtotalIngresado = 0;
@@ -359,7 +359,7 @@ function calcularTotales() {
     base = despuesDescuento;
     impuesto = base > 1500 ? base * 0.08 : 0;
     total = base - impuesto;
-    textoImpuestoCot.textContent = impuesto > 0 ? "RETENCIÃ“N 8%" : "RETENCIÃ“N 0%";
+    textoImpuestoCot.textContent = impuesto > 0 ? "RETENCIÓN 8%" : "RETENCIÓN 0%";
   } else {
     textoImpuestoCot.textContent = "IGV 18%";
     if (modoPrecioCot.value === "CON_IGV") {
@@ -385,7 +385,7 @@ function calcularTotales() {
 }
 
 // -----------------------------------------------------
-// EDITAR COTIZACIÃ“N EXISTENTE
+// EDITAR COTIZACIÓN EXISTENTE
 // -----------------------------------------------------
 async function cargarCotizacion(id) {
   try {
@@ -414,17 +414,17 @@ async function cargarCotizacion(id) {
     if (loadedQuote.status === "ANULADA") {
       const alerta = $("quoteStatusAlert");
       alerta.classList.remove("hidden");
-      alerta.textContent = "Esta cotizaciÃ³n estÃ¡ ANULADA. ReactÃ­vala desde el historial antes de editarla.";
+      alerta.textContent = "Esta cotización está ANULADA. Reactívala desde el historial antes de editarla.";
       btnGuardarCotizacion.disabled = true;
     }
   } catch (error) {
-    alert(error.message || "No se pudo cargar la cotizaciÃ³n.");
+    alert(error.message || "No se pudo cargar la cotización.");
     location.href = "cotizaciones.html";
   }
 }
 
 // -----------------------------------------------------
-// GUARDAR CLIENTE MANUAL AUTOMÃTICAMENTE (COMO v1.0)
+// GUARDAR CLIENTE MANUAL AUTOMÁTICAMENTE (COMO v1.0)
 // -----------------------------------------------------
 async function guardarClienteAutomaticamente() {
   const documento = documentoClienteCot.value.trim().replace(/\D/g, "");
@@ -440,7 +440,7 @@ async function guardarClienteAutomaticamente() {
     if (data.client) { clientes.push(data.client); cargarListaClientes(); return data.client; }
   } catch (error) {
     if (/existe/i.test(error.message || "")) { await cargarClientes(); return clientes.find(c => c.document === documento) || null; }
-    console.warn("No se pudo guardar el cliente automÃ¡ticamente:", error);
+    console.warn("No se pudo guardar el cliente automáticamente:", error);
   }
   return null;
 }
@@ -451,7 +451,7 @@ async function guardarClienteAutomaticamente() {
 async function guardarCotizacion(evento) {
   evento.preventDefault();
   const items = obtenerItems();
-  if (!clienteCot.value.trim()) return alert("Ingrese el cliente o razÃ³n social.");
+  if (!clienteCot.value.trim()) return alert("Ingrese el cliente o razón social.");
   if (!items.length) return alert("Agrega al menos un producto o servicio.");
 
   const clienteAuto = await guardarClienteAutomaticamente();
@@ -479,21 +479,21 @@ async function guardarCotizacion(evento) {
       : await FrancoAPI.apiFetch("/api/quotes", { method: "POST", body: JSON.stringify(payload) });
     const numero = data.quote?.quote_number || numeroCotizacion.value;
     if (editQuoteId) {
-      alert(`CotizaciÃ³n ${numero} actualizada correctamente.`);
+      alert(`Cotización ${numero} actualizada correctamente.`);
       location.href = "cotizaciones.html";
       return;
     }
-    alert(`CotizaciÃ³n ${numero} guardada correctamente.`);
+    alert(`Cotización ${numero} guardada correctamente.`);
     await limpiarCotizacion(false);
   } catch (error) {
-    alert(error.message || "No se pudo guardar la cotizaciÃ³n.");
+    alert(error.message || "No se pudo guardar la cotización.");
     btnGuardarCotizacion.disabled = false;
     btnGuardarCotizacion.textContent = textoAnterior;
   }
 }
 
 async function limpiarCotizacion(confirmar = true) {
-  if (confirmar && !confirm("Â¿Deseas limpiar los datos de esta cotizaciÃ³n?")) return;
+  if (confirmar && !confirm("¿Deseas limpiar los datos de esta cotización?")) return;
   documentoClienteCot.value = "";
   clienteCot.value = "";
   direccionCot.value = "";
@@ -510,4 +510,3 @@ async function limpiarCotizacion(confirmar = true) {
   calcularTotales();
   documentoClienteCot.focus();
 }
-

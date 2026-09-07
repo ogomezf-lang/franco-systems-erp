@@ -1,4 +1,4 @@
-﻿// FRANCO SYSTEMS - PANEL SUPERADMIN v1.2.0
+// FRANCO SYSTEMS - PANEL SUPERADMIN v1.2.0
 
 document.addEventListener("DOMContentLoaded", async () => {
   if (!FrancoAPI.requireSession()) return;
@@ -13,11 +13,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   let empresasActuales = [];
 
   // =======================================================
-  // SESIÃ“N
+  // SESIÓN
   // =======================================================
 
   $("btnCerrarSesion")?.addEventListener("click", () => {
-    if (confirm("Â¿Desea cerrar la sesiÃ³n?")) {
+    if (confirm("¿Desea cerrar la sesión?")) {
       FrancoAPI.logout();
     }
   });
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const role = String(user.role || "").toUpperCase();
 
     if (role !== "SUPERADMIN") {
-      alert("Esta secciÃ³n es exclusiva para SUPERADMIN.");
+      alert("Esta sección es exclusiva para SUPERADMIN.");
       window.location.replace("dashboard.html");
       return;
     }
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
   // =======================================================
-  // PLAN â†’ VENCIMIENTO AUTOMÃTICO
+  // PLAN → VENCIMIENTO AUTOMÁTICO
   // =======================================================
 
   $("empresaPlan")?.addEventListener(
@@ -178,14 +178,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (!name) {
         mostrarMensajeEmpresa(
-          "Ingresa la razÃ³n social."
+          "Ingresa la razón social."
         );
         return;
       }
 
       if (ruc && !/^\d{11}$/.test(ruc)) {
         mostrarMensajeEmpresa(
-          "El RUC debe tener 11 dÃ­gitos."
+          "El RUC debe tener 11 dígitos."
         );
         return;
       }
@@ -199,14 +199,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       if (!adminEmail.includes("@")) {
         mostrarMensajeEmpresa(
-          "Ingresa un correo vÃ¡lido."
+          "Ingresa un correo válido."
         );
         return;
       }
 
       if (adminPassword.length < 6) {
         mostrarMensajeEmpresa(
-          "La contraseÃ±a debe tener al menos 6 caracteres."
+          "La contraseña debe tener al menos 6 caracteres."
         );
         return;
       }
@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         maxUsers < 1
       ) {
         mostrarMensajeEmpresa(
-          "El lÃ­mite de usuarios no es vÃ¡lido."
+          "El límite de usuarios no es válido."
         );
         return;
       }
@@ -271,7 +271,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           "Empresa creada correctamente.\n\n" +
           "Empresa: " + name + "\n" +
           "Administrador: " + adminEmail + "\n\n" +
-          "El usuario ya puede iniciar sesiÃ³n en Franco Systems."
+          "El usuario ya puede iniciar sesión en Franco Systems."
         );
 
       } catch (error) {
@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       $("tablaEmpresas").innerHTML = `
         <tr>
           <td colspan="6" class="empty">
-            No hay empresas registradas todavÃ­a.
+            No hay empresas registradas todavía.
           </td>
         </tr>
       `;
@@ -498,14 +498,14 @@ document.addEventListener("DOMContentLoaded", async () => {
               "license-danger";
 
             vencimiento +=
-              " â€” VENCIDA";
+              " — VENCIDA";
 
           } else if (dias <= 7) {
             clase =
               "license-warning";
 
             vencimiento +=
-              ` â€” ${dias} dÃ­a(s)`;
+              ` — ${dias} día(s)`;
           }
         }
 
@@ -534,7 +534,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   margin-top:3px;
                 "
               >
-                ${esc(plan)} Â· ${esc(estado)}
+                ${esc(plan)} · ${esc(estado)}
               </div>
             </div>
 
@@ -864,7 +864,7 @@ function actualizarPlanEdicion() {
 
 
 // -------------------------------------------------------
-// + 30 DÃAS
+// + 30 DÍAS
 // -------------------------------------------------------
 
 $("btnRenovar30")?.addEventListener(
@@ -874,7 +874,7 @@ $("btnRenovar30")?.addEventListener(
 
 
 // -------------------------------------------------------
-// + 1 AÃ‘O
+// + 1 AÑO
 // -------------------------------------------------------
 
 $("btnRenovar365")?.addEventListener(
@@ -916,7 +916,7 @@ function renovarDias(dias) {
       : new Date(hoy);
 
 
-  // Si la licencia ya venciÃ³,
+  // Si la licencia ya venció,
   // renovamos desde hoy.
   if (base < hoy) {
     base = new Date(hoy);
@@ -1054,7 +1054,7 @@ $("formAdministrarEmpresa")?.addEventListener(
 
     if (!name) {
       mostrarMensajeAdministrar(
-        "Ingresa la razÃ³n social."
+        "Ingresa la razón social."
       );
 
       return;
@@ -1067,7 +1067,7 @@ $("formAdministrarEmpresa")?.addEventListener(
     ) {
 
       mostrarMensajeAdministrar(
-        "El RUC debe tener 11 dÃ­gitos."
+        "El RUC debe tener 11 dígitos."
       );
 
       return;
@@ -1080,7 +1080,7 @@ $("formAdministrarEmpresa")?.addEventListener(
     ) {
 
       mostrarMensajeAdministrar(
-        "El lÃ­mite de usuarios no es vÃ¡lido."
+        "El límite de usuarios no es válido."
       );
 
       return;

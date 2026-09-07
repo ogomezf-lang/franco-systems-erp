@@ -1,4 +1,4 @@
-﻿function dashMoney(value, currency="SOLES") {
+function dashMoney(value, currency="SOLES") {
   const symbol = currency === "DOLARES" ? "$" : "S/";
   return `${symbol} ${Number(value || 0).toFixed(2)}`;
 }
@@ -16,12 +16,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("kpiMonthUsd").textContent = dashMoney(s.month_total_usd || 0, "DOLARES");
     const tbody = document.getElementById("latestQuotes");
     if (!(data.latest || []).length) {
-      tbody.innerHTML = `<tr><td colspan="6" class="empty">TodavÃ­a no hay cotizaciones registradas.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="6" class="empty">Todavía no hay cotizaciones registradas.</td></tr>`;
       return;
     }
     tbody.innerHTML = data.latest.map(q => `
       <tr>
-        <td data-label="NÂ°"><a class="strong" href="ver-cotizacion.html?id=${q.id}">${FrancoAPI.esc(q.quote_number)}</a></td>
+        <td data-label="N°"><a class="strong" href="ver-cotizacion.html?id=${q.id}">${FrancoAPI.esc(q.quote_number)}</a></td>
         <td data-label="Cliente">${FrancoAPI.esc(q.client_name)}</td>
         <td data-label="Fecha">${FrancoAPI.date(q.quote_date)}</td>
         <td data-label="Total" class="text-right">${dashMoney(q.total_amount, q.currency || "SOLES")}</td>
@@ -33,4 +33,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     a.classList.remove("hidden"); a.textContent = error.message;
   }
 });
-

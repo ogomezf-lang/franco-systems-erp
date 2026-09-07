@@ -1,4 +1,4 @@
-﻿// FRANCO SYSTEMS ERP v2 - cliente API y sesiÃ³n
+// FRANCO SYSTEMS ERP v2 - cliente API y sesión
 const FrancoAPI = (() => {
   const ACCESS = "franco_access_token";
   const REFRESH = "franco_refresh_token";
@@ -142,4 +142,3 @@ const FrancoAPI = (() => {
     getAccessToken, requireSession, logout, isLogged, currency, date, esc
   };
 })();
-
